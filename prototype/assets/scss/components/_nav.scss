@@ -1,0 +1,22 @@
+// Sidebar navigation
+.sidenav {
+  @media #{$large-and-up} {
+    box-shadow: none;
+    border-right: $primary-border;
+  }
+
+  .logo {
+    background-image: url($logo-image-path);
+    background-size: contain;
+    display: block;
+    margin: 30px auto;
+    width: 150px;
+    height: 150px;
+  }
+}
+
+.sidenav-trigger {
+  @media #{$large-and-up} {
+    display: none;
+  }
+}

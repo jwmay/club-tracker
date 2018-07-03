@@ -1,0 +1,24 @@
+.stackable {
+  @extend .z-depth-1;
+
+  .card {
+    margin: 0;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    border-bottom: 1px solid $dark-gray-color;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    .card-content {
+      display: flex;
+      flex-flow: column nowrap;
+      
+      @media #{$medium-and-up} {
+        flex-flow: row nowrap;
+      }
+    }
+  }
+}

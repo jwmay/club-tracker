@@ -1,0 +1,9 @@
+// Fix to hide sidebar overlay when loading site
+.sidenav-overlay {
+  display: none;
+}
+
+// Fix for displaying the menu icon in the navbar
+nav i.material-icons {
+  display: inline-block;
+}

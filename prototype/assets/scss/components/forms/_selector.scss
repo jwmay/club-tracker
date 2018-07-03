@@ -1,0 +1,53 @@
+@mixin selector($size, $margin) {
+  label {
+    display: inline-block;
+    position: relative;
+    margin-right: $margin;
+    height: $size;
+    width: $size;
+
+    input[type="radio"] {
+      width: $size;
+      height: $size;
+    }
+
+    span {
+      padding-left: 0;
+
+      &:before,
+      &:after {
+        margin: 0;
+        width: $size;
+        height: $size;
+        opacity: 0.6;
+      }
+
+      &.selector-label {
+        padding: 0;
+        width: $size;
+        height: $size;
+        line-height: $size;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+    }
+
+    &.selector-green span:after {
+      border-color: $success-color;
+      background-color: $success-color;
+    }
+
+    &.selector-red span:after {
+      border-color: $error-color;
+      background-color: $error-color;
+    }
+  }
+}
+
+.selector {
+  @include selector(40px, 15px);
+}
+
+.selector.selector-large {
+  @include selector(50px, 20px);
+}

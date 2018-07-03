@@ -1,0 +1,42 @@
+.attendance {
+
+  .card-content {
+    align-items: center;
+
+    .card-title, div {
+      margin: 0
+    }
+
+    .card-title {
+      width: 100%;
+      margin-bottom: 30px;
+      
+      @media #{$medium-and-up} {
+        width: 30%;
+        margin-bottom: 0;
+        
+        span {
+          display: block;
+        }
+      }
+    }
+
+    .card-actions {
+      width: 100%;
+      margin-bottom: 30px;
+      
+      @media #{$medium-and-up} {
+        width: 40%;
+        margin-bottom: 0;
+      }
+    }
+
+    .input-field {
+      width: 100%;
+
+      @media #{$medium-and-up} {
+        width: 30%;
+      }
+    }
+  }
+}
