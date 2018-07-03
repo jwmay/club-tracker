@@ -19,8 +19,8 @@
     
     <ul id="sidenav" class="sidenav sidenav-fixed">
       <div class="logo" alt="NHS logo"></div>
-      <li><a href="#!">Attendance</a></li>
-      <li><a href="#!">Fundraising</a></li>
+      <li><a href="#!" id="attendance">Attendance</a></li>
+      <li><a id="fundraising">Fundraising</a></li>
     </ul>
 
     <form class="application" action="index.html">
@@ -151,6 +151,11 @@
       <footer>
         <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Submit</button>
       </footer>
+      <div class="app-loading-overlay">
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
+      </div>
     </form>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -11,7 +11,7 @@ header, nav, main, footer {
   
   @media #{$large-and-up} {
     padding: 0 30px;
-    margin-left: 300px;
+    margin-left: $sidenav-width;
   }
 }
 

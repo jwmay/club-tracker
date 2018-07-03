@@ -20,3 +20,21 @@ function getHtml(filename) {
       .setFaviconUrl('http://www.iconj.com/ico/x/u/xu8sd50zpv.ico')
       .addMetaTag('viewport', 'width=device-width, initial-scale=1');
 }
+
+
+function getApp() {
+  var builder = new AppBuilder();
+}
+
+
+
+var AppBuilder = function() {};
+
+
+AppBuilder.prototype.getHeader = function() {};
+
+
+AppBuilder.prototype.getMain = function() {};
+
+
+AppBuilder.prototype.getFooter = function() {};

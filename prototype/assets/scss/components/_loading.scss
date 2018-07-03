@@ -1,0 +1,26 @@
+body.app-loading {
+  overflow: hidden;  
+}
+
+.app-loading-overlay {
+  @extend .sidenav-overlay;
+  opacity: 1;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.72);
+  top: $navbar-height-mobile;
+  left: 0;
+  
+  @media #{$medium-and-up} {
+    top: $navbar-height;
+  }
+
+  @media #{$large-and-up} {
+    left: $sidenav-width;
+  }
+  
+  .progress {
+    margin-top: 0;
+    height: 10px;
+  }
+}
+

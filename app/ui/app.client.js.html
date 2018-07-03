@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
   $('.sidenav').sidenav();
   // $('.collapsible').collapsible();
@@ -31,6 +30,16 @@ $(document).ready(function() {
       }).removeClass('valid invalid');
     }
   });
+
+  
+  // Toggle the loading display
+  $('#fundraising').click(function() {
+    $('html').scrollTop(0);
+    $('body').toggleClass('app-loading');
+    $('.app-loading-overlay').toggle();
+  });
+
+
 
 
   // $('input[name="quarter"]').click(function() {

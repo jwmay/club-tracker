@@ -5888,7 +5888,7 @@ input[type=range]::-ms-thumb {
 .sidenav .collapsible-body {
   padding: 0; }
 
-.sidenav-overlay {
+.sidenav-overlay, .app-loading-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -6945,6 +6945,25 @@ footer {
 .row:last-of-type {
   margin-bottom: 0; }
 
+body.app-loading {
+  overflow: hidden; }
+
+.app-loading-overlay {
+  opacity: 1;
+  display: block;
+  background-color: rgba(255, 255, 255, 0.72);
+  top: 56px;
+  left: 0; }
+  @media only screen and (min-width: 601px) {
+    .app-loading-overlay {
+      top: 64px; } }
+  @media only screen and (min-width: 993px) {
+    .app-loading-overlay {
+      left: 300px; } }
+  .app-loading-overlay .progress {
+    margin-top: 0;
+    height: 10px; }
+
 @media only screen and (min-width: 993px) {
   .sidenav {
     -webkit-box-shadow: none;
@@ -7075,7 +7094,7 @@ footer {
       .attendance .card-content .input-field {
         width: 30%; } }
 
-.sidenav-overlay {
+.sidenav-overlay, .app-loading-overlay {
   display: none; }
 
 nav i.material-icons {
