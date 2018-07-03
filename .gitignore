@@ -1,2 +1,5 @@
-.config.codekit3
+// System and editor files
 .DS_STORE
+.clasp.json
+.config.codekit3
+.vscode/
