@@ -35,29 +35,19 @@ var getError = function(content) {
  * @param {string} type The display type, either alert-{type} or card,
  *    where {type} can be success, warning, error, or information.
  * @param {string} content The content to display.
- * @param {string=} id The id of the card. Default is none.
- * @param {string=} position The position of where the card will be added.
- *    Either top or bottom. Default is bottom.
- * @param {string=} reset Clear the display of alerts, cards, or both before
+ * @param {string} reset Clear the display of alerts, cards, or both before
  *    updating. Default is null.
- * @param {boolean=} close Close the current display. Default is false.
- * @returns {object} An instance of DisplayObject.
+ * @return {object} An instance of DisplayObject.
  */
-var getDisplayObject = function(type, content, id, position, reset, close) {
+var getDisplayObject = function(type, content, reset) {
   // Assign default values as Google's server 'gs' does not support
   // ES6 default parameter values in the function definition
-  id = (undefined === id ? '' : id);
-  position = (undefined === position ? 'bottom' : position);
   reset = (undefined === reset ? null : reset);
-  close = (undefined === close ? false : close);
-  
+
   var displayObject = {
     type: type,
     content: content,
-    id: id,
-    position: position,
-    reset: reset,
-    close: close,
+    reset: reset
   };
   return displayObject;
 };

@@ -1,19 +1,18 @@
 $(document).ready(function() {
+  initialize();
+  
+  // Initialize sidebar navigation, which toggles on mobile displays
   $('.sidenav').sidenav();
-  // $('.collapsible').collapsible();
-  // $('.dropdown-trigger').dropdown();
-  $('.datepicker').datepicker();
-  // $('.tooltipped').tooltip({
-  //   margin: 1,
-  //   position: 'top'
-  // });
 
+  // Initialize datepickers on dynamically-generated input elements
+  $('body').on('focus', '.datepicker', function(){
+    $(this).datepicker();
+  });
 
   // Handle the attendance action button selections, which involves enabling a
   // textarea when the 'excused' absence type is selected, and disabling the
   // textarea when the 'present' or 'absent' type is selected
-  var $attendance = $('input[name^="attendance-"]');
-  $attendance.click(function() {
+  $(document).on('click', 'input[name^="attendance-"]', function() {
     var $selector = $(this).parents('.selector'),
         $checked = $selector.find(':checked'),
         $textarea = $selector.parent().find('textarea');
@@ -31,19 +30,34 @@ $(document).ready(function() {
     }
   });
 
-  
-  // Toggle the loading display
-  $('#fundraising').click(function() {
-    $('html').scrollTop(0);
-    $('body').toggleClass('app-loading');
-    $('.app-loading-overlay').toggle();
+
+  // Controls for testing only
+  $('#showLoading').click(function() {
+    showLoading();
+  });
+  $('#hideLoading').click(function() {
+    hideLoading();
+  });
+  $('#clearDisplay').click(function() {
+    clearDisplay();
   });
 
 
-
+  // $('.collapsible').collapsible();
+  // $('.dropdown-trigger').dropdown();
+  // $('.tooltipped').tooltip({
+  //   margin: 1,
+  //   position: 'top'
+  // });
 
   // $('input[name="quarter"]').click(function() {
     // console.log( $('input[name="quarter"]:checked').val() );
   // });
 });
 
+
+function initialize() {
+  google.script.run
+      .withSuccessHandler(updateDisplay)
+      .getApp();
+}

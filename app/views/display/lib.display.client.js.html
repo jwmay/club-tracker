@@ -1,0 +1,259 @@
+<script>
+/**
+ * Helper function for updating the user-interface with a single display
+ * or an array of displays.
+ * 
+ * This function is needed in google.script.run calls where the output
+ * of a server call must be a DisplayObject that is passed into the
+ * withSuccessHandler() method.
+ *
+ * Example: google.script.run.withSuccessHandler(updateDisplay).serverCall();
+ *
+ * @param {object|Array} displayObject A DisplayObject instance or an array of
+ *    DisplayObject instances that defines the display parameters.
+ */
+function updateDisplay(displayObject) {
+  var display = new Display();
+
+  if (Array.isArray(displayObject) === true) {
+    displayObject.forEach(function(object) {
+      display.updateDisplay(object);
+    });
+  } else {
+    display.updateDisplay(displayObject);
+  }
+  
+  // Hide the loading overlay in case it was displayed during a server call
+  display.hideLoading();
+}
+
+
+/**
+* Helper function for displaying the loading message on the user interface.
+*/
+function showLoading() {
+  var display = new Display();
+  display.showLoading();
+}
+
+
+/**
+* Helper function for hiding the loading message from the user interface.
+*/
+function hideLoading() {
+  var display = new Display();
+  display.hideLoading();
+}
+
+
+/**
+ * Clears the display or a given section of the display.
+ * 
+ * Sections include 'header', 'message', 'main', and 'footer'. If no section is
+ * given, all sections will be cleared.
+ *
+ * @param {string} section The section of the display to clear. Default is all.
+ */
+function clearDisplay(section) {
+  var display = new Display();
+  display.clearDisplay(section);
+}
+
+
+/**
+ * Close the selected alert by removing it from the dom.
+ *
+ * @param {element} elem The clicked element.
+ */
+function closeAlert(elem) {
+  $(elem).parent().remove();
+}
+
+
+/**
+ * Scroll the page to the given id.
+ * 
+ * @param {string} id The id of the element to scroll to.
+ */
+function scrollTo(id){
+  var element = $(id);
+  $('html,body').animate({scrollTop: element.offset().top},'slow');
+}
+
+
+
+
+/**
+* Base class for controlling the user interface.
+*/
+var Display = function() {
+  this.html = $('html');
+  this.body = $('body');
+  this.header = $('#app-header');
+  this.message = $('#message');
+  this.main = $('#app-main');
+  this.footer = $('#app-footer');
+  this.loading = $('.app-loading-overlay');
+};
+
+
+/**
+* Update the display based on the parameters defined in the display object.
+* 
+* @param {DisplayObject} display A DisplayObject instance containing
+*    the parameters that define the display.
+*/
+Display.prototype.updateDisplay = function(display) {
+  // Clear the display if reset is True
+  if (display.reset !== null) this.clearDisplay(display.reset);
+
+  // Update the display with the specified display type
+  if (display.type.startsWith('alert') === true) {
+    var alert = this.getAlert(display.type, display.content);
+    $(alert).hide().appendTo(this.alert).slideDown('slow');
+  
+  } else if (display.type === 'card') {
+    var card = this.getCard(display.content, display.id);
+    if (display.position === 'top') {
+      $(card).hide().prependTo(this.content).slideDown('slow');
+    } else if (display.position === 'bottom') {
+      $(card).hide().appendTo(this.content).slideDown('slow');
+    }
+  
+  } else if (display.type === 'header') {
+    this.header.html(display.content);
+
+  } else if (display.type === 'main') {
+    this.main.html(display.content);
+
+  } else if (display.type === 'footer') {
+    this.footer.html(display.content);
+  
+  // Show an error if an invalid display type was specified
+  } else {
+    var error = getDisplayObject('alert-error',
+        'An invalid display type was specified.');
+    this.updateDisplay(error);
+  }
+};
+
+
+/**
+* Clears the display or a given section of the display.
+* 
+* Sections include 'header', 'message', 'main', and 'footer'. If no section is
+* given, all sections will be cleared.
+*
+* @param {string} section The section of the display to clear. Default is all.
+*/
+Display.prototype.clearDisplay = function(section='all') {
+  switch(section) {
+    case 'header':
+      this.header.html('');
+      break;
+    case 'message':
+      this.message.html('');
+      break;
+    case 'main':
+      this.main.html('');
+      break;
+    case 'footer':
+      this.footer.html('');
+      break;
+    default:
+      this.header.html('');
+      this.message.html('');
+      this.main.html('');
+      this.footer.html('');
+  }
+};
+
+
+/**
+* Shows the loading overlay on the display.
+*/
+Display.prototype.showLoading = function() {
+  this.html.scrollTop(0);
+  this.body.toggleClass('app-loading');
+  this.loading.toggle();
+};
+
+
+/**
+* Hides the loading overlay on the display.
+*/
+Display.prototype.hideLoading = function() {
+  this.body.toggleClass('app-loading');
+  this.loading.toggle();
+};
+
+
+/**
+* Returns an alert element of the specified type containing the
+* given content as an HTML-formatted string.
+*
+* @param {string} type The alert type, which can be alert-success,
+*    alert-warning, alert-error, or alert-information.
+* @param {string} content The content displayed in the alert.
+* @returns {string} An HTML-formatted string containing the alert.
+*/
+Display.prototype.getAlert = function(type, content) {
+  var alert = '' +
+      '<div class="alert ' + type + ' border-0">' +
+        '<button type="button" class="close" aria-label="Close" ' +
+            'onclick="closeAlert(this);">' +
+          '&times;' +
+        '</button>' +
+        content +
+      '</div>';
+  return alert;
+};
+
+
+/**
+* Returns a card element containing the specified content as an
+* HTML-formatted string. An optional id for the card element can
+* be specified.
+*
+* @param {string} content The content displayed on the card.
+* @param {string=} id The id of the card element. Default is none.
+* @returns {string} An HTML-formatted string containing the card.
+*/
+Display.prototype.getCard = function(content, id) {
+  id = (id !== '' ? ' id="' + id + '"' : '');
+  var card = '' +
+      '<div class="card"' + id + '>' +
+        content +
+      '</div>';
+  return card;
+};
+
+
+/**
+ * Returns a DisplayObject instance to be used in the Display class.
+ *
+ * Two types of display types can be generated: an alert-{type} or a card,
+ * where {type} can be success, warning, error, or information. The content
+ * of the display can be an HTML-formatted string or just a plain string.
+ * An optional id for a card can be specified. Cards can be added to the top
+ * or bottom of other cards with the optional position argument. By default
+ * cards are positioned at the bottom. An option reset parameter is available
+ * to clear the display of alerts, cards, or both before updating the display.
+ * A flag to close the current display is also available.
+ *
+ * @param {string} type The display type, either alert-{type} or card,
+ *    where {type} can be success, warning, error, or information.
+ * @param {string} content The content to display.
+ * @param {string} reset Clear the display of alerts, cards, or both before
+ *    updating. Default is null.
+ * @return {object} An instance of DisplayObject.
+ */
+var getDisplayObject = function(type, content, reset=null) {
+  var displayObject = {
+    type: type,
+    content: content,
+    reset: reset
+  };
+  return displayObject;
+};
+</script>

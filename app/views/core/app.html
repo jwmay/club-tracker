@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <base target="_top">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <?!= include('views/display/lib.display.styles.css'); ?>
+    <style>
+      <?!= include('views/core/styles.css'); ?>
+    </style>
+  </head>
+  
+  <body class="app-loading">
+    <nav class="nav">
+      <div class="nav-wrapper">
+        <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="#" class="brand-logo">NHS Tracker</a>
+      </div>
+    </nav>
+      
+    <ul id="sidenav" class="sidenav sidenav-fixed">
+      <div class="logo" alt="NHS logo"></div>
+      <li><a href="#" id="attendance">Attendance</a></li>
+      <li><a id="fundraising">Fundraising</a></li>
+      <li><a id="showLoading">Show Loading</a></li>
+      <li><a id="hideLoading">Hide Loading</a></li>
+      <li><a id="clearDisplay">Clear Display</a></li>
+    </ul>
+
+    <form class="application" action="index.html">
+      <header id="app-header"></header>
+      <main id="app-main"></main>
+      <footer id="app-footer"></footer>
+      <div class="app-loading-overlay">
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+      </div>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://use.fontawesome.com/0aaec818ef.js"></script>
+    <?!= include('views/display/lib.display.client.js'); ?>
+    <script>
+      <?!= include('views/core/app.client.js'); ?>
+    </script>
+  </body>
+</html>
