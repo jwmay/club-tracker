@@ -3,6 +3,7 @@ body, .application {
   display: flex;
   flex-direction: column;
   background-color: $gray-color;
+  margin: 0;
 }
 
 header, nav, main, footer {
