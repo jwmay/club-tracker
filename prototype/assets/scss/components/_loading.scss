@@ -5,7 +5,7 @@ body.app-loading {
 .app-loading-overlay {
   @extend .sidenav-overlay;
   opacity: 1;
-  display: block;
+  display: none;
   background-color: rgba(255, 255, 255, 0.72);
   top: $navbar-height-mobile;
   left: 0;
