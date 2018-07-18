@@ -18,17 +18,28 @@
 function getHtml(filename) {
   var template = HtmlService.createTemplateFromFile(filename);
   return template.evaluate()
-      .setTitle('NHS Tracker')
-      .setFaviconUrl('http://www.iconj.com/ico/x/u/xu8sd50zpv.ico')
-      .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+    .setTitle('NHS Tracker')
+    .setFaviconUrl('http://www.iconj.com/ico/x/u/xu8sd50zpv.ico')
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1');
 }
 
 
-function getApp() {
-  var attendance = new Attendance();
-  var builder = new AppBuilder(attendance);
+function getAppPage(page) {
+  var controller;
+  switch(page) {
+    case 'attendance':
+      controller = new Attendance();
+      break;
+    case 'dashboard':
+      controller = new Dashboard();
+      break;
+    default:
+      controller = new Dashboard();
+  }
+  var builder = new AppBuilder(controller);
   return builder.buildApp();
 }
+
 
 
 

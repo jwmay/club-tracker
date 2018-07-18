@@ -4,10 +4,25 @@ $(document).ready(function() {
   // Initialize sidebar navigation, which toggles on mobile displays
   $('.sidenav').sidenav();
 
+  // Handle navigation button clicks
+  $('a.nav-link').click(function() {
+    var page = $(this).attr('id');
+    getPage(page);
+  });
+
   // Initialize datepickers on dynamically-generated input elements
   $('body').on('focus', '.datepicker', function(){
     $(this).datepicker();
   });
+
+
+  // Handle the submit button click
+  $('form.application').submit(function() {
+    if ($(this).valid()) {
+      console.log('valid form');
+    }
+  });
+
 
   // Handle the attendance action button selections, which involves enabling a
   // textarea when the 'excused' absence type is selected, and disabling the
@@ -31,18 +46,6 @@ $(document).ready(function() {
   });
 
 
-  // Controls for testing only
-  $('#showLoading').click(function() {
-    showLoading();
-  });
-  $('#hideLoading').click(function() {
-    hideLoading();
-  });
-  $('#clearDisplay').click(function() {
-    clearDisplay();
-  });
-
-
   // $('.collapsible').collapsible();
   // $('.dropdown-trigger').dropdown();
   // $('.tooltipped').tooltip({
@@ -57,7 +60,19 @@ $(document).ready(function() {
 
 
 function initialize() {
+  getPage('dashboard');
+}
+
+
+function getPage(page) {
+  showLoading();
   google.script.run
-      .withSuccessHandler(updateDisplay)
-      .getApp();
+    .withSuccessHandler(updateDisplay)
+    .getAppPage(page);
+}
+
+
+function submit() {
+  var page = $('#submit').data("page");
+  console.log('SUBMIT PAGE: ' + page);
 }

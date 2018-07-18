@@ -6,14 +6,15 @@
 
     <base target="_top">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <?!= include('views/display/lib.display.styles.css'); ?>
+    <?!= include('views/core/display/lib.display.styles.css'); ?>
     <style>
       <?!= include('views/core/styles.css'); ?>
     </style>
   </head>
   
-  <body class="app-loading">
+  <body>
     <nav class="nav">
       <div class="nav-wrapper">
         <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -21,16 +22,9 @@
       </div>
     </nav>
       
-    <ul id="sidenav" class="sidenav sidenav-fixed">
-      <div class="logo" alt="NHS logo"></div>
-      <li><a href="#" id="attendance">Attendance</a></li>
-      <li><a id="fundraising">Fundraising</a></li>
-      <li><a id="showLoading">Show Loading</a></li>
-      <li><a id="hideLoading">Hide Loading</a></li>
-      <li><a id="clearDisplay">Clear Display</a></li>
-    </ul>
+    <?!= include('views/core/app.sidebar'); ?>
 
-    <form class="application" action="index.html">
+    <form class="application" onsubmit="return false;">
       <header id="app-header"></header>
       <main id="app-main"></main>
       <footer id="app-footer"></footer>
@@ -42,9 +36,9 @@
     </form>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-    <script type="text/javascript" src="https://use.fontawesome.com/0aaec818ef.js"></script>
-    <?!= include('views/display/lib.display.client.js'); ?>
+    <?!= include('views/core/display/lib.display.client.js'); ?>
     <script>
       <?!= include('views/core/app.client.js'); ?>
     </script>

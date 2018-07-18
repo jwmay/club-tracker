@@ -6911,7 +6911,8 @@ body, .application {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.05); }
+  background-color: rgba(0, 0, 0, 0.05);
+  margin: 0; }
 
 header, nav, main, footer {
   width: auto;
@@ -6950,7 +6951,7 @@ body.app-loading {
 
 .app-loading-overlay {
   opacity: 1;
-  display: block;
+  display: none;
   background-color: rgba(255, 255, 255, 0.72);
   top: 56px;
   left: 0; }
@@ -6977,6 +6978,9 @@ body.app-loading {
   margin: 30px auto;
   width: 150px;
   height: 150px; }
+
+.sidenav .nav-link {
+  cursor: pointer; }
 
 @media only screen and (min-width: 993px) {
   .sidenav-trigger {
@@ -7005,6 +7009,11 @@ body.app-loading {
         -webkit-box-direction: normal;
             -ms-flex-flow: row nowrap;
                 flex-flow: row nowrap; } }
+
+form label.error {
+  top: -35%;
+  font-style: italic;
+  color: #CF5E25; }
 
 .selector label {
   display: inline-block;
