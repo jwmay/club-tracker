@@ -1,24 +1,25 @@
 $(document).ready(function() {
   initialize();
   
-  // Initialize sidebar navigation, which toggles on mobile displays
+  // Initialize dropdowns and sidebar, which toggles on mobile displays
   $('.sidenav').sidenav();
-
-  // Handle navigation button clicks
-  $('a.nav-link').click(function() {
-    var page = $(this).attr('id');
-    getPage(page);
-  });
-
+  $('.dropdown-trigger').dropdown();
+  
   // Initialize datepickers on dynamically-generated input elements
   $('body').on('focus', '.datepicker', function(){
     $(this).datepicker();
   });
+    
+  // Handle navigation button clicks, some of which are dynamically generated
+  $(document).on('click', 'a.nav-link, a.btn-floating', function() {
+    var page = $(this).attr('id');
+    getPage(page);
+  });
 
-
-  // Handle the submit button click
+  // Handle the dynamically-generated submit button click
   $('form.application').submit(function() {
     if ($(this).valid()) {
+      submit();
       console.log('valid form');
     }
   });
@@ -45,13 +46,6 @@ $(document).ready(function() {
     }
   });
 
-
-  // $('.collapsible').collapsible();
-  // $('.dropdown-trigger').dropdown();
-  // $('.tooltipped').tooltip({
-  //   margin: 1,
-  //   position: 'top'
-  // });
 
   // $('input[name="quarter"]').click(function() {
     // console.log( $('input[name="quarter"]:checked').val() );

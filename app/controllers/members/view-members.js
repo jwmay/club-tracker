@@ -15,21 +15,23 @@
  */
 
 
-var Dashboard = function() {};
+var ViewMembers = function() {};
 
 
-Dashboard.prototype.getHeader = function() {
+ViewMembers.prototype.getHeader = function() {
   return '' +
-    '<h1>Dashboard</h1>';
+    '<h1>View Members</h1>';
 }
 
 
-Dashboard.prototype.getMain = function() {
-  return 'Dashboard Main';
+ViewMembers.prototype.getMain = function() {
+  return 'view members main';
 }
 
 
-Dashboard.prototype.getFooter = function() {
+ViewMembers.prototype.getFooter = function() {
   return '' +
-    '&copy; 2018 Mojave High School';
+    '<a class="btn-floating btn-large waves-effect waves-light" id="addMember">' +
+      '<i class="material-icons">add</i>' +
+    '</a>';
 }

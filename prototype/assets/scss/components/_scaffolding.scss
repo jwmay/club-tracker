@@ -38,6 +38,10 @@ footer {
   margin-top: 30px;
   background-color: $white;
   border-top: $primary-border;
+
+  .btn-floating {
+    margin-left: auto;
+  }
 }
 
 .row:last-of-type {

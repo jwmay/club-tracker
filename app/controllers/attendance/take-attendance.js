@@ -15,13 +15,13 @@
  */
 
 
-var Attendance = function() {
+var TakeAttendance = function() {
   var db = new Database();
   this.roster = db.getRoster();
 };
 
 
-Attendance.prototype.getHeader = function() {
+TakeAttendance.prototype.getHeader = function() {
   return '' +
     '<h1>Attendance</h1>' +
     '<div class="row">' +
@@ -60,7 +60,7 @@ Attendance.prototype.getHeader = function() {
 }
 
 
-Attendance.prototype.getMain = function() {
+TakeAttendance.prototype.getMain = function() {
   var members = [];
   while (this.roster.hasNext()) {
     var member = this.roster.getNext();
@@ -91,15 +91,15 @@ Attendance.prototype.getMain = function() {
 }
 
 
-Attendance.prototype.getFooter = function() {
+TakeAttendance.prototype.getFooter = function() {
   return '' +
-    '<button id="submit" class="btn btn-large waves-effect waves-light" data-page="attendance">' +
+    '<button id="submit" class="btn btn-large waves-effect waves-light" data-page="takeAttendance">' +
       'Submit' +
     '</button>';
 }
 
 
-Attendance.prototype.getCard_ = function(member) {
+TakeAttendance.prototype.getCard_ = function(member) {
   var inputName = 'attendance-' + member.number;
   var textareName = 'reason-' + member.number;
   return '' +

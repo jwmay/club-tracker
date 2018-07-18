@@ -5,11 +5,43 @@
       <i class="fas fa-fw fa-2x fa-tachometer-alt"></i> Dashboard
     </a>
   </li>
+  
   <li>
-    <a class="nav-link" id="attendance">
+    <a class='dropdown-trigger' data-target='membersDropdown'>
+      <i class="fas fa-fw fa-2x fa-user"></i> Members
+    </a>
+    <ul id='membersDropdown' class='dropdown-content'>
+      <li>
+        <a class="nav-link" id="addMember">
+          <i class="fas fa-fw fa-2x fa-plus-circle"></i> Add member
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" id="viewMembers">
+          <i class="fas fa-fw fa-2x fa-eye"></i> View members
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <a class='dropdown-trigger' data-target='attendanceDropdown'>
       <i class="fas fa-fw fa-2x fa-users"></i> Attendance
     </a>
+    <ul id='attendanceDropdown' class='dropdown-content'>
+      <li>
+        <a class="nav-link" id="takeAttendance">
+          <i class="fas fa-fw fa-2x fa-plus-circle"></i> Take attendance
+        </a>
+      </li>
+      <li>
+        <a class="nav-link" id="viewAttendance">
+          <i class="fas fa-fw fa-2x fa-eye"></i> View attendance
+        </a>
+      </li>
+    </ul>
   </li>
+
   <li>
     <a class="nav-link" id="fundraising">
       <i class="fas fa-fw fa-2x fa-money-bill-wave"></i> Fundraising

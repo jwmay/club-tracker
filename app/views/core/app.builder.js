@@ -27,8 +27,14 @@ function getHtml(filename) {
 function getAppPage(page) {
   var controller;
   switch(page) {
-    case 'attendance':
-      controller = new Attendance();
+    case 'addMember':
+      controller = new AddMember();
+      break;
+    case 'viewMembers':
+      controller = new ViewMembers();
+      break;
+    case 'takeAttendance':
+      controller = new TakeAttendance();
       break;
     case 'dashboard':
       controller = new Dashboard();
