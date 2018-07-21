@@ -1,0 +1,30 @@
+.panels {
+  display: flex;
+  margin: -8px;
+  
+  .panel {
+    border: $primary-border;
+    margin: 8px;
+    padding: 16px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+    
+    &:hover {
+      color: #696969;
+      background-color: $gray-color;
+    }
+    
+    &.panel-2 {
+      width: 50%;
+    }
+    
+    &.panel-3 {
+      width: 33.33%;
+    }
+    
+    &.panel-4 {
+      width: 25%;
+    }
+  }
+}
