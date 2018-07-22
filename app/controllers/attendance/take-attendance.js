@@ -48,7 +48,7 @@ var TakeAttendance = function() {
  */
 TakeAttendance.prototype.getHeader = function() {
   return '' +
-    '<h1>Attendance</h1>' +
+    '<h1>' + this._pageTitle +'</h1>' +
     '<div class="row">' +
       '<div class="input-field col s12 m5">' +
         '<input type="text" id="date" name="date" ' +
