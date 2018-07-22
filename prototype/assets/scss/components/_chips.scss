@@ -1,0 +1,27 @@
+.chip {
+
+  &.chip-blue {
+    color: $white;
+    background-color: $primary-color-light;
+  }
+
+  &.chip-dark {
+    color: $white;
+    background-color: #9c9c9c;
+  }
+  
+  &.chip-green {
+    color: $white;
+    background-color: $success-color;
+  }
+  
+  &.chip-red {
+    color: $white;
+    background-color: $error-color;
+  }
+  
+  &.chip-yellow {
+    color: $white;
+    background-color: $secondary-color;
+  }
+}

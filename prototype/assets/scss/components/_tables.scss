@@ -1,0 +1,69 @@
+.table {
+  @extend .stackable;
+
+  .table-row {
+    @extend .card;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    padding: 25px;
+    
+    @media #{$medium-and-up} {
+      flex-flow: row nowrap;
+    }
+  }
+
+  .data {
+    margin: 0 15px;
+    text-align: center;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &.data-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $primary-color;
+      border-radius: 100%;
+      color: $white;
+      height: 60px;
+      width: 60px;
+    }
+
+    &.data-main {
+      @extend .card-title;
+      text-align: left;
+      width: 25%;
+    }
+
+    span {
+      display: block;
+    }
+
+    .data-title {
+      color: #9c9c9c;
+      font-style: italic;
+      font-size: 14px;
+    }
+
+    .data-value {
+      font-size: 20px;
+    }
+  }
+  
+  .table-action-button {
+    @extend .btn-floating;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    height: 56px;
+    width: 56px;
+  }
+}
