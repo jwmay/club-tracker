@@ -15,37 +15,22 @@
  */
 
 
+ /**
+  * Base configuration of webapp.
+  */
 var Configuration = {
-  getSheets: function() {
-    return {
-      members: {
-        sheetName: 'Member Tracker',
-        fields: {
-          lastName: 1,
-          firstName: 2,
-          studentNumber: 3,
-          grade: 4,
-          gender: 5,
-          birthday: 6,
-          yearJoined: 7,
-          membershipStatus: 8,
-          memberStatus: 9,
-        },
-      },
-
-      attendance: {
-        sheetName: 'Attendance Tracker',
-        fields: {
-          lastName: 1,
-          firstName: 2,
-          studentNumber: 3,
-          percentQ1: 4,
-          percentQ2: 5,
-          percentQ3: 6,
-          percentQ4: 7,
-          percentTotal: 8,
-        },
-      },
-    };
-  }
+  /**
+   * The name of the sheet containing the database.
+   */
+  databaseSheetName: 'Member Tracker',
+  
+  /**
+   * An object containing the row positions for top rows of the database sheet.
+   */
+  layout: {
+    sections: 1,
+    fields: 2,
+    fieldMeta: 3,
+    dataStart: 4,
+  },
 };

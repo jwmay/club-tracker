@@ -11,7 +11,7 @@ $(document).ready(function() {
   });
     
   // Handle navigation button clicks, some of which are dynamically generated
-  $(document).on('click', 'a.nav-link, a.btn-floating', function() {
+  $(document).on('click', 'a.nav-link, a.btn-floating, div.panel', function() {
     var page = $(this).attr('id');
     getPage(page);
   });
@@ -20,26 +20,25 @@ $(document).ready(function() {
   $('form.application').submit(function() {
     if ($(this).valid()) {
       submit();
-      console.log('valid form');
     }
   });
 
 
   // Handle the attendance action button selections, which involves enabling a
-  // textarea when the 'excused' absence type is selected, and disabling the
-  // textarea when the 'present' or 'absent' type is selected
+  // text input when the 'excused' absence type is selected, and disabling the
+  // input when the 'present' or 'absent' type is selected
   $(document).on('click', 'input[name^="attendance-"]', function() {
     var $selector = $(this).parents('.selector'),
         $checked = $selector.find(':checked'),
-        $textarea = $selector.parent().find('textarea');
+        $reason = $selector.parent().find('input[name^="reason-"]');
     // Textarea is only used for 'excused' absence type
-    if ($checked.val() === 'e') {
-      $textarea.prop({
+    if ($checked.val() === 'E') {
+      $reason.prop({
         'disabled': false,
         'required': true
       });
     } else {
-      $textarea.prop({
+      $reason.prop({
         'disabled': true,
         'required': false
       }).removeClass('valid invalid');
@@ -67,6 +66,27 @@ function getPage(page) {
 
 
 function submit() {
-  var page = $('#submit').data("page");
-  console.log('SUBMIT PAGE: ' + page);
+  var page = $('#submit').data('page');
+  showLoading();
+  switch(page) {
+    case 'takeAttendance':
+      getAttendance();
+  }
+}
+
+
+function getAttendance() {
+  var form = new FormHandler();
+  var attendance = {
+    date: form.getValue('#date'),
+    name: form.getValue('#name'),
+    quarter: form.getValue('input[name="quarter"]:checked'),
+    rosterIds: form.getValues('input[name="rosterId"]'),
+    marks: form.getValues('input[name^="attendance-"]:checked'),
+    reasons: form.getValues('input[name^="reason-"]')
+  };
+  console.log(JSON.stringify(attendance));
+  google.script.run
+    .withSuccessHandler(updateDisplay)
+    .saveAttendance(attendance);
 }

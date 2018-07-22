@@ -15,6 +15,14 @@
  */
 
 
+ /**
+  * Returns an HtmlOutput object for the given filename.
+  * 
+  * Serves the main html content for displaying the web app.
+  * 
+  * @param {String} filename The name of the html file to display.
+  * @returns {HtmlOutput} The html content for displaying the web app.
+  */
 function getHtml(filename) {
   var template = HtmlService.createTemplateFromFile(filename);
   return template.evaluate()
@@ -24,6 +32,12 @@ function getHtml(filename) {
 }
 
 
+/**
+ * Returns an array containing the DisplayObjects for the page.
+ * 
+ * @param {String} page The name of the page to display.
+ * @returns {DisplayObject[]} An array containing the sections of the page.
+ */
 function getAppPage(page) {
   var controller;
   switch(page) {
@@ -47,36 +61,96 @@ function getAppPage(page) {
 }
 
 
+/**
+ * Returns an array containing the DisplayObjects for the success page.
+ * 
+ * @param {String} pageTitle The title of the page, shown in the header.
+ * @param {String} messageTitle The title of the message, shown in main.
+ * @param {String} messageContent The content of the message, shown in main.
+ * @returns {DisplayObject[]} An array containing the sections of the success
+ *    page to display.
+ */
+function getSuccessPage(pageTitle, messageTitle, messageContent) {
+  var controller = new Message('success', pageTitle, messageTitle,
+          messageContent),
+      builder = new AppBuilder(controller);
+  return builder.buildApp();
+}
 
 
+/**
+ * Returns an array containing the DisplayObjects for the error page.
+ * 
+ * @param {String} pageTitle The title of the page, shown in the header.
+ * @param {String} messageTitle The title of the message, shown in main.
+ * @param {String} messageContent The content of the message, shown in main.
+ * @returns {DisplayObject[]} An array containing the sections of the error
+ *    page to display.
+ */
+function getErrorPage(pageTitle, messageTitle, messageContent) {
+  var controller = new Message('error', pageTitle, messageTitle,
+          messageContent),
+      builder = new AppBuilder(controller);
+  return builder.buildApp();
+}
+
+
+
+
+/**
+ * Base class for building page views to display.
+ * 
+ * @param {Object} controller A controller object for the page to build.
+ */
 var AppBuilder = function(controller) {
-  this.controller = controller;
+  this._controller = controller;
 };
 
 
+/**
+ * Returns an array containing the DisplayObjects for the header, main, and
+ * footer sections of the page.
+ * 
+ * @returns {DisplayObject[]} An array containing the sections of the page
+ *    to display.
+ */
 AppBuilder.prototype.buildApp = function() {
-  var appDisplay = [
-    this.getHeader(),
-    this.getMain(),
-    this.getFooter()
+  return [
+    this.getHeader_(),
+    this.getMain_(),
+    this.getFooter_()
   ];
-  return appDisplay;
 }
 
 
-AppBuilder.prototype.getHeader = function() {
-  var content = this.controller.getHeader();
-  return getDisplayObject('header', content, 'header');
+/**
+ * Returns the DisplayObject containing the header section of the controller.
+ * 
+ * @private
+ * @returns {DisplayObject} The header.
+ */
+AppBuilder.prototype.getHeader_ = function() {
+  return getDisplayObject('header', this._controller.getHeader(), 'header');
 }
 
 
-AppBuilder.prototype.getMain = function() {
-  var content = this.controller.getMain();
-  return getDisplayObject('main', content, 'main');
+/**
+ * Returns the DisplayObject containing the main section of the controller.
+ * 
+ * @private
+ * @returns {DisplayObject} The main section.
+ */
+AppBuilder.prototype.getMain_ = function() {
+  return getDisplayObject('main', this._controller.getMain(), 'main');
 }
 
 
-AppBuilder.prototype.getFooter = function() {
-  var content = this.controller.getFooter();
-  return getDisplayObject('footer', content, 'footer');
+/**
+ * Returns the DisplayObject containing the footer section of the controller.
+ * 
+ * @private
+ * @returns {DisplayObject} The footer.
+ */
+AppBuilder.prototype.getFooter_ = function() {
+  return getDisplayObject('footer', this._controller.getFooter(), 'footer');
 }
