@@ -2,3 +2,13 @@
 nav i.material-icons {
   display: inline-block;
 }
+
+// Fix for display of materialize select elements
+.select-wrapper {
+  top: 10px;
+
+  + label {
+    top: -14px;
+    font-size: 1rem;
+  }
+}

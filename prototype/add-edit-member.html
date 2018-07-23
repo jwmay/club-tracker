@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add Member | NHS Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/lib.display.styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-wrapper">
+        <a href="#" data-target="sidenav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="#" class="brand-logo">NHS Tracker</a>
+      </div>
+    </nav>
+    
+    <ul id="sidenav" class="sidenav sidenav-fixed">
+      <div class="logo" alt="NHS logo"></div>
+      <li><a href="#!" id="attendance">Attendance</a></li>
+      <li><a id="fundraising">Fundraising</a></li>
+    </ul>
+
+    <form class="application" action="index.html">
+      <header>
+        <h1>Add Member</h1>
+      </header>
+
+      <main>
+        <div class="row">
+          <div class="col s12 m10 l8">
+            <div class="card">
+                <div class="card-content">
+                <div class="row">
+                  <div class="input-field col s12 m6">
+                    <input type="text" id="firstName" name="firstName" class="validate" required>
+                    <label for="firstName">First Name</label>
+                  </div>
+                  <div class="input-field col s12 m6">
+                    <input type="text" id="lastName" name="lastName" class="validate" required>
+                    <label for="lastName">Last Name</label>
+                  </div>
+                  <div class="input-field col s12 m6">
+                    <input type="number" id="studentNumber" name="studentNumber" class="validate" min="0" required>
+                    <label for="studentNumber">Student Number</label>
+                  </div>
+                  <div class="input-field col s12 m6">
+                    <input type="text" id="birthdate" name="birthdate" class="datepicker">
+                    <label for="studentNumber">Birthdate</label>
+                  </div>
+                  <div class="input-field col s12 m6">
+                    <div class="selector">
+                      <h6 class="selector-title">Grade</h6>
+                      <label>
+                        <input name="grade" type="radio" value="9" required>
+                        <span class="selector-label">9</span>
+                      </label>
+                      <label>
+                        <input name="grade" type="radio" value="10">
+                        <span class="selector-label">10</span>
+                      </label>
+                      <label>
+                        <input name="grade" type="radio" value="11">
+                        <span class="selector-label">11</span>
+                      </label>
+                      <label>
+                        <input name="grade" type="radio" value="12">
+                        <span class="selector-label">12</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="input-field col s12 m6">
+                    <div class="selector">
+                      <h6 class="selector-title">Gender</h6>
+                      <label>
+                        <input name="quarter" type="radio" value="F" required>
+                        <span class="selector-label">F</span>
+                      </label>
+                      <label>
+                        <input name="quarter" type="radio" value="M">
+                        <span class="selector-label">M</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="input-field col s4 m2">
+                    <select id="year" name="year">
+                      <option value="2014">2014</option>
+                      <option value="2015">2015</option>
+                      <option value="2016">2016</option>
+                      <option value="2017">2017</option>
+                      <option value="2018" selected>2018</option>
+                      <option value="2019">2019</option>
+                      <option value="2020">2020</option>
+                    </select>
+                    <label>Year Joined</label>
+                  </div>
+                  <div class="input-field col s9 m4 offset-m4">
+                    <select id="membershipStatus" name="membershipStatus">
+                      <option value="active" selected>active</option>
+                      <option value="dismissed">dismissed</option>
+                      <option value="graduated">graduated</option>
+                      <option value="resigned">resigned</option>
+                    </select>
+                    <label>Membership Status</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      
+      <footer>
+        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Add member</button>
+      </footer>
+      
+      <div class="app-loading-overlay">
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
+      </div>
+    </form>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src="assets/js/app.js"></script>
+  </body>
+</html>

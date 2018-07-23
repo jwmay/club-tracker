@@ -1,8 +1,8 @@
 $(document).ready(function() {
   $('.sidenav').sidenav();
-  // $('.collapsible').collapsible();
-  // $('.dropdown-trigger').dropdown();
   $('.datepicker').datepicker();
+  $('select').formSelect();
+
   // $('.tooltipped').tooltip({
   //   margin: 1,
   //   position: 'top'
