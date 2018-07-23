@@ -4,7 +4,7 @@
   .table-row {
     @extend .card;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row wrap;
     align-items: center;
     padding: 25px;
     
@@ -39,7 +39,12 @@
     &.data-main {
       @extend .card-title;
       text-align: left;
-      width: 25%;
+      max-width: 64%;
+
+      @media #{$medium-and-up} {
+        max-width: none;
+        width: 25%;
+      }
     }
 
     span {

@@ -7069,10 +7069,10 @@ body.app-loading {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -7108,7 +7108,11 @@ body.app-loading {
     width: 60px; }
   .table .data.data-main {
     text-align: left;
-    width: 25%; }
+    max-width: 64%; }
+    @media only screen and (min-width: 601px) {
+      .table .data.data-main {
+        max-width: none;
+        width: 25%; } }
   .table .data span {
     display: block; }
   .table .data .data-title {
