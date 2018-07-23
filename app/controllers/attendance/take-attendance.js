@@ -170,11 +170,6 @@ TakeAttendance.prototype.saveAttendance = function(attendance) {
 /**
  * Returns the HTML content for displaying a card for the given member.
  * 
- * The member object must contain the following keys:
- *  - rosterId   =>  the member roster id
- *  - lastName   =>  the member last name
- *  - firstName  =>  the member first name
- * 
  * @private
  * @param {Object} member The member information.
  * @returns {String} The member card.
