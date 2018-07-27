@@ -1,5 +1,10 @@
 .table {
   @extend .stackable;
+  margin-bottom: 20px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 
   .table-row {
     @extend .card;
@@ -7,6 +12,8 @@
     flex-flow: row wrap;
     align-items: center;
     padding: 25px;
+    overflow-x: scroll;
+    border-right: 25px solid transparent;
     
     @media #{$medium-and-up} {
       flex-flow: row nowrap;
@@ -47,6 +54,16 @@
       }
     }
 
+    &.data-highlight {
+      background-color: lighten($secondary-color, 40%);
+      border: 10px solid lighten($secondary-color, 40%);
+
+      .data-title,
+      .data-value {
+        font-weight: 600;
+      }
+    }
+
     span {
       display: block;
     }
@@ -59,6 +76,26 @@
 
     .data-value {
       font-size: 20px;
+    }
+
+    .data-dot {
+      width: 34px;
+      height: 34px;
+      line-height: 34px;
+      margin: 0 auto;
+      border-radius: 100%;
+
+      &.data-green {
+        background-color: lighten($success-color, 35%);
+      }
+      
+      &.data-yellow {
+        background-color: lighten($secondary-color, 35%);
+      }
+      
+      &.data-red {
+        background-color: lighten($error-color, 35%);
+      }
     }
   }
   
