@@ -184,10 +184,11 @@ AddMember.prototype.getMain = function() {
  * @returns {String} The page footer.
  */
 AddMember.prototype.getFooter = function() {
+  var buttonLabelMode = (this._mode === 'add') ? 'Add' : 'Update';
   return '' +
     '<button id="submit" class="btn btn-large waves-effect waves-light" ' +
         'data-page="addMember" type="submit">' +
-      'Submit' +
+      buttonLabelMode + '  Member' +
     '</button>' +
     '<button id="cancel" class="btn btn-large btn-flat waves-effect waves-light" ' +
         'data-page="viewMembers" type="button">' +
