@@ -16,9 +16,20 @@
 
 
 /**
+ * Returns the given date as a formatted string 'Mon D, YYYY'.
+ * 
+ * @param {Date} date The date to format.
+ * @returns {String} The date as a formatted string.
+ */
+function getDateString(date) {
+  return (date.getMonthName() + ' ' + date.getDate() + ', ' + date.getFullYear());
+}
+
+
+/**
  * Returns the string in camel case with spaces removed.
  * 
- * @returns {string} The string in camel case.
+ * @returns {String} The string in camel case.
  */
 String.prototype.toCamelCase = function() {
   return this.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function(match, index) {
@@ -31,8 +42,8 @@ String.prototype.toCamelCase = function() {
 /**
  * Returns the row index in a 2D array of the given search value.
  * 
- * @param {array} element The value to search.
- * @returns {integer} The row index, or -1 if the element is not found.
+ * @param {Array} element The value to search.
+ * @returns {Integer} The row index, or -1 if the element is not found.
  */
 Array.prototype.getRowIndexOf2D = function(element) {
   for (var i = 0; i < this.length; i++) {
@@ -100,4 +111,29 @@ if (!Array.prototype.find) {
     configurable: true,
     writable: true
   });
+}
+
+
+/**
+ * Returns a three-digit string representation of the month.
+ * 
+ * @returns {String} The 3-character name of the month.
+ */
+Date.prototype.getMonthName = function() {
+  var month = this.getMonth(),
+      months = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+      ];
+  return months[month];
 }
