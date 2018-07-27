@@ -77,7 +77,8 @@ ViewMembers.prototype.getMain = function() {
  */
 ViewMembers.prototype.getFooter = function() {
   return '' +
-    '<a class="btn-floating btn-large waves-effect waves-light" id="addMember">' +
+    '<a class="btn-floating btn-large waves-effect waves-light" ' +
+        'data-page="addMember">' +
       '<i class="material-icons">add</i>' +
     '</a>';
 }

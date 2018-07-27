@@ -12,7 +12,7 @@ $(document).ready(function() {
     
   // Handle navigation button clicks, some of which are dynamically generated
   $(document).on('click', 'a.nav-link, a.btn-floating, div.panel', function() {
-    var page = $(this).attr('id');
+    var page = $(this).data('page');
     getPage(page);
   });
 

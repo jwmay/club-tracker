@@ -233,11 +233,11 @@ TakeAttendance.prototype.getRoster_ = function() {
 TakeAttendance.prototype.getSuccess_ = function() {
   return '' +
     '<div class="panels">' +
-      '<div class="panel panel-2" id="viewAttendance">' +
+      '<div class="panel panel-2" data-page="viewAttendance">' +
         '<i class="fas fa-fw fa-3x fa-eye"></i>' +
         '<h5>View Attendance</h5>' +
       '</div>' +
-      '<div class="panel panel-2" id="takeAttendance">' +
+      '<div class="panel panel-2" data-page="takeAttendance">' +
         '<i class="fas fa-fw fa-3x fa-plus-circle"></i>' +
         '<h5>Take Attendance</h5>' +
       '</div>' +

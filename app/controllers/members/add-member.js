@@ -249,11 +249,11 @@ AddMember.prototype.getPageTitle_ = function() {
 AddMember.prototype.getSuccess_ = function() {
   return '' +
     '<div class="panels">' +
-      '<div class="panel panel-2" id="viewMembers">' +
+      '<div class="panel panel-2" data-page="viewMembers">' +
         '<i class="fas fa-fw fa-3x fa-eye"></i>' +
         '<h5>View Members</h5>' +
       '</div>' +
-      '<div class="panel panel-2" id="addMember">' +
+      '<div class="panel panel-2" data-page="addMember">' +
         '<i class="fas fa-fw fa-3x fa-plus-circle"></i>' +
         '<h5>Add Member</h5>' +
       '</div>' +
