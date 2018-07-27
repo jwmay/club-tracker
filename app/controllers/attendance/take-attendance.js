@@ -146,7 +146,7 @@ TakeAttendance.prototype.getFooter = function() {
  */
 TakeAttendance.prototype.saveAttendance = function(attendance) {
   try {
-    var index = this._db.insertField('attendance', ('Att-' + attendance.date),
+    var index = this._db.setFieldHeader('attendance', ('Att-' + attendance.date),
         attendance.name, ('Q' + attendance.quarter));
     var data = {
       rosterIds: attendance.rosterIds,
@@ -156,13 +156,11 @@ TakeAttendance.prototype.saveAttendance = function(attendance) {
         notes: attendance.reasons
       }]
     }
-    this._db.insertData(data);
+    this._db.setFieldData(data);
     return getSuccessPage(this._pageTitle, 'Attendance saved',
       this.getSuccess_());
   } catch(error) {
-    return getErrorPage(this._pageTitle, 'Error saving attendance',
-      '<strong>Error name:</strong> ' + error.name + '<br>' +
-      '<strong>Message:</strong> ' + error.message);
+    return getErrorPage(this._pageTitle, 'Error saving attendance', error);
   }
 }
 
