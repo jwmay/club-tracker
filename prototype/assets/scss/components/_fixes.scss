@@ -6,9 +6,19 @@ nav i.material-icons {
 // Fix for display of materialize select elements
 .select-wrapper {
   top: 10px;
+  margin-top: 20px;
 
   + label {
-    top: -14px;
+    top: -4px;
     font-size: 1rem;
+  }
+}
+
+// Add space between buttons
+.btn {
+  margin-right: 10px;
+
+  &:last-of-type {
+    margin-right: 0;
   }
 }

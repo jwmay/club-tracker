@@ -25,6 +25,20 @@ function updateDisplay(displayObject) {
   
   // Hide the loading overlay in case it was displayed during a server call
   display.hideLoading();
+
+  // Render any Materialized select elements after updating the display
+  // *** HACK *** In an ideal world this wouldn't be here, but the Materialize
+  // select elements will not load when this function is called in the
+  // app.client.js.html file, but does work when placed here (likely due to
+  // order in which functions are called)...so here it is :/
+  $(document).ready(function() {
+    $('select').formSelect();
+  });
+
+  // Reposition labels on pre-filled inputs
+  $(document).ready(function() {
+    M.updateTextFields();
+  });
 }
 
 

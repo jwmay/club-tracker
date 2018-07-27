@@ -99,12 +99,53 @@ Database.prototype.getNextFieldIndex = function(section) {
 
 
 /**
- * Returns the row index for the database record with the given roster id.
+ * Returns the row number of the first empty row.
  * 
- * @param {String} id The roster id number.
+ * @returns {Integer} The row number.
+ */
+Database.prototype.getNextRecordIndex = function() {
+  return (this.data.length + Configuration.layout.dataStart);
+}
+
+
+/**
+ * Returns the roster id for the next empty record.
+ * 
+ * @returns {Integer} The roster id of the next empty record.
+ */
+Database.prototype.getNextRosterId = function() {
+  var lastRosterId = this.data.slice(-1)[0][0];
+  return (lastRosterId + 1);
+}
+
+
+/**
+ * Returns an array containing the data for the record with the given roster id.
+ * 
+ * @param {String} id The id of the record to return.
+ * @param {Array=} fields The field names. (optional)
+ * @returns {Array} The record data.
+ */
+Database.prototype.getRecordById = function(id, fields) {
+  var rowIndex = (this.getRowById(id) - Configuration.layout.dataStart);
+  if (typeof fields !== 'undefined') {
+    var selected = this.getSelectedFields(fields);
+    return selected.data[rowIndex];
+  } else {
+    return this.data[rowIndex];
+  }
+}
+
+
+/**
+ * Returns the row index in the spreadsheet for the database record with the
+ * given roster id.
+ * 
+ * @param {Integer|String} id The roster id number.
  * @returns {Integer} The row index.
  */
 Database.prototype.getRowById = function(id) {
+  id = (typeof id === 'string') ? parseInt(id, 10) : id;
   return (this.data.getRowIndexOf2D(id) + Configuration.layout.dataStart);
 }
 
@@ -181,6 +222,19 @@ Database.prototype.getSelectedFields = function(fields) {
 
 
 /**
+ * Returns true if the field is in the section, otherwise, returns false.
+ * 
+ * @param {String} section The section to search.
+ * @param {String} field The field to search.
+ * @returns {Boolean} True if found, otherwise, False.
+ */
+Database.prototype.hasField = function(section, field) {
+  var section = this.sections[section];
+  return section.fields.hasOwnProperty(field);
+}
+
+
+/**
  * Inserts the given data entries into the database sheet only for the records
  * whose roster id is given.
  * 
@@ -193,7 +247,7 @@ Database.prototype.getSelectedFields = function(fields) {
  * 
  * @param {Object} entries The entry data to insert into the database.
  */
-Database.prototype.insertData = function(entries) {
+Database.prototype.setFieldData = function(entries) {
   // Ensure that roster ids are integers; needed for comparison
   entries.rosterIds = entries.rosterIds.map(function(x) {
     return parseInt(x, 10);
@@ -238,11 +292,65 @@ Database.prototype.insertData = function(entries) {
  * @param {String} subtitle The field metadata, visible in the spreadsheet.
  * @returns {Integer} The column index of the inserted field.
  */
-Database.prototype.insertField = function(section, title, titleMeta, subtitle) {
+Database.prototype.setFieldHeader = function(section, title, titleMeta, subtitle) {
   var index = this.getNextFieldIndex(section);
   this.spreadsheet.setCell(Configuration.layout.fields, index, title, titleMeta);
   if (subtitle) {
     this.spreadsheet.setCell(Configuration.layout.fieldMeta, index, subtitle);
   }
   return index;
+}
+
+
+/**
+ * Inserts the given record into the database and returns the row index of the
+ * new record.
+ * 
+ * This method does not insert a new row into the sheet, but rather sets the
+ * fields for the next available (empty) row in the database sheet.
+ * 
+ * @param {Object} record The record data.
+ * @returns {Integer} The row index of the inserted record.
+ */
+Database.prototype.setRecord = function(record) {
+  var index = this.getNextRecordIndex();
+  record.rosterId = this.getNextRosterId();
+  this.writeRecord_(index, record);
+  return index;
+}
+
+
+/**
+ * Updates the given record in the database and returns the row index of the
+ * record.
+ * 
+ * @param {Object} record The record data.
+ * @returns {Integer} The row index of the updated record.
+ */
+Database.prototype.updateRecord = function(record) {
+  var index = this.getRowById(record.rosterId);
+  this.writeRecord_(index, record);
+  return index;
+}
+
+
+/**
+ * Writes the given record to the row in the database with the given index.
+ * 
+ * @todo Perhaps this can be simplified: just need to find the value of the
+ *       field in an object of objects (JSON)...what method does that?
+ * 
+ * @param {Integer} index The row index of the record.
+ * @param {Object} record The record data.
+ */
+Database.prototype.writeRecord_ = function(index, record) {
+  var section;
+  for (var field in record) {
+    if (this.hasField('memberInformation', field)) {
+      section = this.sections.memberInformation;
+    } else {
+      section = this.sections.roster;
+    }
+    this.spreadsheet.setCell(index, section.fields[field], record[field]);
+  }
 }

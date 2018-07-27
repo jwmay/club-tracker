@@ -33,8 +33,7 @@ var ViewMembers = function() {
  * @returns {String} The page header.
  */
 ViewMembers.prototype.getHeader = function() {
-  return '' +
-    '<h1>' + this._pageTitle + '</h1>';
+  return '<h1>' + this._pageTitle + '</h1>';
 }
 
 
@@ -161,7 +160,8 @@ ViewMembers.prototype.getTableRow_ = function(member) {
         '<span class="data-title">Attendance</span>' +
         '<span class="data-value">' + attendance + '</span>' +
       '</div>' +
-      '<div class="table-action-button" data-rosterId="' + member.rosterId + '">' +
+      '<div class="table-action-button waves-effect waves-light" ' +
+          'id="editMember" data-rosterid="' + member.rosterId + '">' +
         '<i class="fas fa-pen fa-2x"></i>' +
       '</div>' +
     '</div>';

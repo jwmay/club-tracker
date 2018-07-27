@@ -6,7 +6,7 @@ $(document).ready(function() {
   $('.dropdown-trigger').dropdown();
   
   // Initialize datepickers on dynamically-generated input elements
-  $('body').on('focus', '.datepicker', function(){
+  $('body').on('focus', '.datepicker', function() {
     $(this).datepicker();
   });
     
@@ -16,6 +16,11 @@ $(document).ready(function() {
     getPage(page);
   });
 
+  // Handle the edit member button click
+  $(document).on('click', '#editMember', function() {
+    getPage('editMember', {rosterId: $(this).data('rosterid')});
+  });
+
   // Handle the dynamically-generated submit button click
   $('form.application').submit(function() {
     if ($(this).valid()) {
@@ -23,6 +28,10 @@ $(document).ready(function() {
     }
   });
 
+  // Handle the dynamically-generated cancel button click
+  $(document).on('click', '#cancel', function() {
+    getPage($(this).data('page'));
+  });
 
   // Handle the attendance action button selections, which involves enabling a
   // text input when the 'excused' absence type is selected, and disabling the
@@ -44,38 +53,56 @@ $(document).ready(function() {
       }).removeClass('valid invalid');
     }
   });
-
-
-  // $('input[name="quarter"]').click(function() {
-    // console.log( $('input[name="quarter"]:checked').val() );
-  // });
 });
 
 
+/**
+ * Load the app by getting the dashboard page.
+ */
 function initialize() {
   getPage('dashboard');
 }
 
 
-function getPage(page) {
+/**
+ * Shows the given page on the app display by running a server-side controller.
+ * 
+ * @param {String} page The name of the page to display.
+ * @param {Object} args An optional object for passing controller options.
+ */
+function getPage(page, args) {
   showLoading();
   google.script.run
     .withSuccessHandler(updateDisplay)
-    .getAppPage(page);
+    .getAppPage(page, args);
 }
 
 
+/**
+ * Handles the submit button click by processing the given form data using the
+ * page controller.
+ */
 function submit() {
   var page = $('#submit').data('page');
   showLoading();
   switch(page) {
     case 'takeAttendance':
-      getAttendance();
+      getAttendance_();
+      break;
+    case 'addMember':
+      getMember_();
+      break;
   }
 }
 
 
-function getAttendance() {
+/**
+ * Gathers the form data and runs server-side functions to write save data in
+ * the database spreadsheet for the 'Take Attendance' page.
+ * 
+ * @private
+ */
+function getAttendance_() {
   var form = new FormHandler();
   var attendance = {
     date: form.getValue('#date'),
@@ -85,8 +112,32 @@ function getAttendance() {
     marks: form.getValues('input[name^="attendance-"]:checked'),
     reasons: form.getValues('input[name^="reason-"]')
   };
-  console.log(JSON.stringify(attendance));
   google.script.run
     .withSuccessHandler(updateDisplay)
     .saveAttendance(attendance);
+}
+
+
+/**
+ * Gathers the form data and runs server-side functions to write save data in
+ * the database spreadsheet for the 'Add/Edit Member' page.
+ * 
+ * @private
+ */
+function getMember_() {
+  var form = new FormHandler();
+  var member = {
+    rosterId: form.getValue('#rosterId'),
+    firstName: form.getValue('#firstName'),
+    lastName: form.getValue('#lastName'),
+    studentNumber: form.getValue('#studentNumber'),
+    birthdate: form.getValue('#birthdate'),
+    grade: form.getValue('input[name="grade"]:checked'),
+    gender: form.getValue('input[name="gender"]:checked'),
+    yearJoined: form.getValue('#year'),
+    membershipStatus: form.getValue('#status'),
+  };
+  google.script.run
+    .withSuccessHandler(updateDisplay)
+    .saveMember(member);
 }

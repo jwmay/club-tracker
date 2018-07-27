@@ -36,22 +36,26 @@ function getHtml(filename) {
  * Returns an array containing the DisplayObjects for the page.
  * 
  * @param {String} page The name of the page to display.
+ * @param {Object} args An optional object for passing controller options.
  * @returns {DisplayObject[]} An array containing the sections of the page.
  */
-function getAppPage(page) {
+function getAppPage(page, args) {
   var controller;
   switch(page) {
     case 'addMember':
       controller = new AddMember();
       break;
-    case 'viewMembers':
-      controller = new ViewMembers();
+    case 'dashboard':
+      controller = new Dashboard();
+      break;
+    case 'editMember':
+      controller = new AddMember('edit', args.rosterId);
       break;
     case 'takeAttendance':
       controller = new TakeAttendance();
       break;
-    case 'dashboard':
-      controller = new Dashboard();
+    case 'viewMembers':
+      controller = new ViewMembers();
       break;
     default:
       controller = new Dashboard();
@@ -83,14 +87,16 @@ function getSuccessPage(pageTitle, messageTitle, messageContent) {
  * 
  * @param {String} pageTitle The title of the page, shown in the header.
  * @param {String} messageTitle The title of the message, shown in main.
- * @param {String} messageContent The content of the message, shown in main.
+ * @param {Object} error The error object for the thrown exception.
  * @returns {DisplayObject[]} An array containing the sections of the error
  *    page to display.
  */
-function getErrorPage(pageTitle, messageTitle, messageContent) {
-  var controller = new Message('error', pageTitle, messageTitle,
-          messageContent),
-      builder = new AppBuilder(controller);
+function getErrorPage(pageTitle, messageTitle, error) {
+  var messageContent = '' +
+      '<strong>Error name:</strong> ' + error.name + '<br>' +
+      '<strong>Message:</strong> ' + error.message
+  var controller = new Message('error', pageTitle, messageTitle, messageContent);
+  var builder = new AppBuilder(controller);
   return builder.buildApp();
 }
 
