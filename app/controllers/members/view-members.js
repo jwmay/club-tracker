@@ -88,7 +88,7 @@ ViewMembers.prototype.getFooter = function() {
  * Returns the member information data sorted by last name.
  * 
  * @private
- * @returns {Array[][]} 
+ * @returns {Array[][]} The member information, sorted by last name.
  */
 ViewMembers.prototype.getMemberInformation_ = function() {
   var fields = [
@@ -115,9 +115,9 @@ ViewMembers.prototype.getMemberInformation_ = function() {
  * @returns {String} The member card.
  */
 ViewMembers.prototype.getTableRow_ = function(member) {
-  var genderIcon = (member.gender === 'M') ? 'male' : 'female';
-  var attendance = (member.totalAttendanceRate !== '') ? (member.totalAttendanceRate*100 + '%') : 'NA';
-  var memberStatus = {};
+  var genderIcon = (member.gender === 'M') ? 'male' : 'female',
+      attendance = (member.totalAttendanceRate !== '') ? getPercentString(member.totalAttendanceRate) : 'NA',
+      memberStatus = {};
   switch(member.memberStatus) {
     case 'good standing':
       memberStatus = {

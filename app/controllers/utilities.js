@@ -27,6 +27,17 @@ function getDateString(date) {
 
 
 /**
+ * Returns the given percent formatted as a string the % appended.
+ * 
+ * @param {Number} percent The percent to convert.
+ * @returns {String} The formatted percent with % symbol appended.
+ */
+function getPercentString(percent) {
+  return (percent * 100 + '%');
+}
+
+
+/**
  * Returns the string in camel case with spaces removed.
  * 
  * @returns {String} The string in camel case.
