@@ -2,8 +2,11 @@ body, .application {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: $gray-color;
   margin: 0;
+}
+
+.application {
+  background-color: $gray-color;
 }
 
 header, nav, main, footer {
