@@ -15,26 +15,80 @@
  */
 
 
-var DataSet = function(data) {
-  this.data = data;
+/**
+ * Provides methods for working with row-indexed 2D arrays.
+ * 
+ * @param {Array[][]} data The data.
+ * @param {Array=} fieldNames The field names. Default is null.
+ */
+var DataSet = function(data, fieldNames) {
+  this._data = data;
+  this._dataStored = data;
+  this._fields = (typeof fieldNames === 'undefined') ? null : fieldNames;
+  
 };
 
 
+/**
+ * Returns the data represented by the DataSet object.
+ * 
+ * @returns {Array[][]} The data.
+ */
+DataSet.prototype.getData = function() {
+  return this._dataStored;
+}
+
+
+/**
+ * Returns the field names represented by the DataSet object.
+ * 
+ * @returns {Array[][]} The field names.
+ */
+DataSet.prototype.getFields = function() {
+  return this._fields;
+}
+
+
+/**
+ * Returns the next row in the dataset.
+ * 
+ * @returns {Array} The next row.
+ */
+DataSet.prototype.getNext = function() {
+  return this._data.shift();
+};
+
+
+/**
+ * Determines whether calling getNext() will return an item.
+ * 
+ * @returns {Boolean} True if getNext() will return an item; false if not.
+ */
 DataSet.prototype.hasNext = function() {
-  if (this.data.length > 0) return true;
+  if (this._data.length > 0) return true;
   return false;
 };
 
 
-DataSet.prototype.getNext = function() {
-  return this.data.shift();
-};
+/**
+ * Resets getNext() to the start of the data array.
+ */
+DataSet.prototype.reset = function() {
+  this._data = this._dataStored;
+}
 
 
+/**
+ * Sorts the data by the given field. Data can be reversed if the flag is set
+ * to true.
+ * 
+ * @param {Integer} field The field index to sort.
+ * @param {Boolean} reverse Reverse data if true.
+ */
 DataSet.prototype.sortByField = function(field, reverse) {
   reverse = (typeof reverse === 'undefined' ? false : reverse);
   if (this.hasNext()) {
-    this.data.sort(function(a, b) {
+    this._dataStored.sort(function(a, b) {
       if (a[field] === b[field]) {
         if (field + 1 <= a.length) {
           if (a[field+1] === b[field+1]) {
@@ -49,7 +103,8 @@ DataSet.prototype.sortByField = function(field, reverse) {
         return (a[field] < b[field]) ? -1 : 1;
       }
     });
-    if (reverse === true) this.data.reverse();
+    if (reverse === true) this._dataStored.reverse();
   }
+  this.reset();
   return this;
 }

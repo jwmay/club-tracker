@@ -41,7 +41,7 @@ var Database = function() {
    * 
    * @type {JSON} The database section names and metadata.
    */
-  this.sections = this.getSections();
+  this.sections = this.getSectionMetadata_();
 
   /**
    * A row-indexed 2D array containing the database records.
@@ -68,6 +68,40 @@ Database.prototype.getData = function() {
     if (element[0] !== '') return true;
     return false;
   });
+}
+
+
+/**
+ * Returns a DataSet object containing data and field names for the roster
+ * section and the specified section.
+ * 
+ * @param {String} section The section name.
+ * @returns {DataSet} The data and field names for the given section.
+ */
+Database.prototype.getDataBySection = function(section) {
+  var fields = this.getFieldNames(),
+      range = this.sections[section].range,
+      fieldNames = [],
+      data = [];
+  for (var i = 0; i < this.data.length; i++) {
+    var row = this.data[i],
+    dataRow = [];
+    // Add roster data
+    for (var j = 0; j < this.sections.roster.range; j++) {
+      if (i === 0) fieldNames.push(fields[j]);
+      dataRow.push(row[j]);
+    }
+    // Add section data
+    var col = (this.sections[section].start - 1);
+    for (col; col < range; col++) {
+      if (fields[col] !== '') {
+        if (i === 0) fieldNames.push(fields[col]);
+        dataRow.push(row[col]);
+      }
+    }
+    data.push(dataRow);
+  }
+  return new DataSet(data, fieldNames);
 }
 
 
@@ -130,7 +164,7 @@ Database.prototype.getRecordById = function(id, fields) {
   var rowIndex = (this.getRowById(id) - Configuration.layout.dataStart);
   if (typeof fields !== 'undefined') {
     var selected = this.getSelectedFields(fields);
-    return selected.data[rowIndex];
+    return selected.getData()[rowIndex];
   } else {
     return this.data[rowIndex];
   }
@@ -147,54 +181,6 @@ Database.prototype.getRecordById = function(id, fields) {
 Database.prototype.getRowById = function(id) {
   id = (typeof id === 'string') ? parseInt(id, 10) : id;
   return (this.data.getRowIndexOf2D(id) + Configuration.layout.dataStart);
-}
-
-
-/**
- * Returns an object containing the database section names and metadata.
- * 
- * The keys of the returned object represent the names of the sections. Each
- * section key contains a metadata object with the following keys:
- *  - sectionName.start  -->  the column index where the section starts
- *  - sectionName.range  -->  the number of columns in the section
- *  - sectionName.fields -->  an object containing the sections field names and
- *                            their corresponding column index
- * 
- * @returns {Object} The database section names and metadata.
- */
-Database.prototype.getSections = function() {
-  // Get the section and field header rows from the spreadsheet
-  var sectionData = {},
-      sections = this.spreadsheet.getRow(Configuration.layout.sections)[0],
-      fields = this.getFieldNames();
-  
-  // Create the section objects
-  var colNum = 1;
-  var currentSection = '';
-  for (var i = 0; i < sections.length; i++) {
-    var field = fields[i],
-        section = sections[i];
-    
-    // The start of a new section
-    if (section !== '') {
-      currentSection = section.toCamelCase();
-      sectionData[currentSection] = {
-        start: colNum,
-        range: 1,
-        fields: {},
-      };
-    // Working within the current section
-    } else {
-      sectionData[currentSection].range += 1;
-    }
-
-    // Add the field, if not empty
-    if (field !== '') {
-      sectionData[currentSection].fields[field.toCamelCase()] = colNum;
-    }
-    colNum += 1;
-  }
-  return sectionData;
 }
 
 
@@ -331,6 +317,55 @@ Database.prototype.updateRecord = function(record) {
   var index = this.getRowById(record.rosterId);
   this.writeRecord_(index, record);
   return index;
+}
+
+
+/**
+ * Returns an object containing the database section names and metadata.
+ * 
+ * The keys of the returned object represent the names of the sections. Each
+ * section key contains a metadata object with the following keys:
+ *  - sectionName.start  -->  the column index where the section starts
+ *  - sectionName.range  -->  the number of columns in the section
+ *  - sectionName.fields -->  an object containing the sections field names and
+ *                            their corresponding column index
+ * 
+ * @private
+ * @returns {Object} The database section names and metadata.
+ */
+Database.prototype.getSectionMetadata_ = function() {
+  // Get the section and field header rows from the spreadsheet
+  var sectionData = {},
+      sections = this.spreadsheet.getRow(Configuration.layout.sections)[0],
+      fields = this.getFieldNames();
+  
+  // Create the section objects
+  var colNum = 1;
+  var currentSection = '';
+  for (var i = 0; i < sections.length; i++) {
+    var field = fields[i],
+        section = sections[i];
+    
+    // The start of a new section
+    if (section !== '') {
+      currentSection = section.toCamelCase();
+      sectionData[currentSection] = {
+        start: colNum,
+        range: 1,
+        fields: {},
+      };
+    // Working within the current section
+    } else {
+      sectionData[currentSection].range += 1;
+    }
+
+    // Add the field, if not empty
+    if (field !== '') {
+      sectionData[currentSection].fields[field.toCamelCase()] = colNum;
+    }
+    colNum += 1;
+  }
+  return sectionData;
 }
 
 
