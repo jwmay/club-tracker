@@ -33,14 +33,19 @@ function saveMember(member) {
  * Handles creating the layout for the page sections and for processing the
  * user input by inserting the form data into the database spreadsheet.
  * 
- * @param {String=} mode The mode to display, 'add' or 'edit'. Default is add.
- * @param {Object=} rosterId The rosterId of the member to edit. Default is none.
+ * @param {String=} mode The mode to display, add or edit. Default is add.
+ * @param {Object=} args Optional args object for passing a roster id.
  */
-var AddMember = function(mode, rosterId) {
+var AddMember = function(mode, args) {
   this._db = new Database();
   this._form = new FormBuilder();
   this._mode = (typeof mode === 'undefined') ? 'add' : mode;
-  this._rosterId = (typeof rosterId === 'undefined') ? null : rosterId;
+  this._rosterId = null;
+
+  // Process args object
+  if (typeof args !== 'undefined' && args !== null) {
+    if (args.hasOwnProperty('rosterId')) this._rosterId = args.rosterId;
+  }
 };
 
 

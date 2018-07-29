@@ -36,7 +36,7 @@ function getHtml(filename) {
  * Returns an array containing the DisplayObjects for the page.
  * 
  * @param {String} page The name of the page to display.
- * @param {Object} args An optional object for passing controller options.
+ * @param {Object=} args An optional object for passing controller options.
  * @returns {DisplayObject[]} An array containing the sections of the page.
  */
 function getAppPage(page, args) {
@@ -49,7 +49,7 @@ function getAppPage(page, args) {
       controller = new Dashboard();
       break;
     case 'editMember':
-      controller = new AddMember('edit', args.rosterId);
+      controller = new AddMember('edit', args);
       break;
     case 'takeAttendance':
       controller = new TakeAttendance();

@@ -21,7 +21,7 @@
  * Handles creating the layout for the page sections and for processing the
  * user input by inserting the form data into the database spreadsheet.
  * 
- * @param {Object} args Optional args object for passing filters.
+ * @param {Object=} args Optional args object for passing filters.
  */
 var ViewMembers = function(args) {
   this._db = new Database();
