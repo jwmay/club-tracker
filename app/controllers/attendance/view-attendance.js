@@ -52,13 +52,14 @@ ViewAttendance.prototype.getMain = function() {
       rosterId: member[0],
       lastName: member[1],
       firstName: member[2],
-      rateTotal: member[3],
-      rateQ1: member[4],
-      rateQ2: member[5],
-      rateQ3: member[6],
-      rateQ4: member[7],
-      attendance: member.slice(8),
-      fields: fields.slice(8)
+      status: member[3],
+      rateTotal: member[4],
+      rateQ1: member[5],
+      rateQ2: member[6],
+      rateQ3: member[7],
+      rateQ4: member[8],
+      attendance: member.slice(9),
+      fields: fields.slice(9)
     });
   }
   content += '<div class="table">';
@@ -86,14 +87,17 @@ ViewAttendance.prototype.getFooter = function() {
 
 
 /**
- * Returns the attendance data sorted by last name.
+ * Returns the attendance data sorted by last name and filtered for active
+ * members only.
  * 
  * @private
- * @returns {Array[][]} The attendance data, sorted by last name.
+ * @returns {DataSet} The attendance data, filtered and sorted by last name.
  */
 ViewAttendance.prototype.getAttendanceData_ = function() {
   var attendanceData = this._db.getDataBySection('attendance');
-  return attendanceData.sortByField(1);
+  return attendanceData
+      .filterByField(3, 'active')
+      .sortByField(1);
 }
 
 
@@ -110,7 +114,8 @@ ViewAttendance.prototype.getTableRow_ = function(member) {
       '<div class="data data-main">' +
         member.lastName + ', ' + member.firstName +
       '</div>' +
-      '<div class="data data-highlight">' +
+      '<div class="data data-highlight highlight-' +
+          getPercentColor(member.rateTotal) + '">' +
         '<span class="data-title">Total Attendance</span>' +
         '<span class="data-value">' + getPercentString(member.rateTotal) + '</span>' +
       '</div>' +

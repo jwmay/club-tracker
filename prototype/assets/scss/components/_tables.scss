@@ -62,9 +62,19 @@
       }
     }
 
-    &.data-highlight {
+    &.data-highlight { // this is also the .highlight-yellow color as well
       background-color: lighten($secondary-color, 40%);
       border: 10px solid lighten($secondary-color, 40%);
+      
+      &.highlight-green {
+        background-color: lighten($success-color, 40%);
+        border: 10px solid lighten($success-color, 40%);
+      }
+      
+      &.highlight-red {
+        background-color: lighten($error-color, 40%);
+        border: 10px solid lighten($error-color, 40%);
+      }
 
       .data-title,
       .data-value {

@@ -27,6 +27,25 @@ function getDateString(date) {
 
 
 /**
+ * Returns the color name for the given percnet.
+ * 
+ * @param {Number} percent The percent.
+ * @returns {String} The color name corresponding to the given percent.
+ */
+function getPercentColor(percent) {
+  var colors = [
+    [0.9, 'green'],
+    [0.8, 'yellow'],
+    [0.0, 'red']
+  ];
+  var color = colors.find(function(colorInfo) {
+    return (percent >= colorInfo[0]);
+  });
+  return color[1];
+}
+
+
+/**
  * Returns the given percent formatted as a string the % appended.
  * 
  * @param {Number} percent The percent to convert.

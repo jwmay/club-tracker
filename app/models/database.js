@@ -85,12 +85,20 @@ Database.prototype.getDataBySection = function(section) {
       data = [];
   for (var i = 0; i < this.data.length; i++) {
     var row = this.data[i],
-    dataRow = [];
+        dataRow = [],
+        rosterStart = (this.sections.roster.start - 1);
+    
     // Add roster data
-    for (var j = 0; j < this.sections.roster.range; j++) {
+    for (var j = rosterStart; j < this.sections.roster.range; j++) {
       if (i === 0) fieldNames.push(fields[j]);
       dataRow.push(row[j]);
     }
+    
+    // Add membership status
+    var status = (this.sections.memberInformation.fields.membershipStatus - 1);
+    if (i === 0) fieldNames.push(fields[status]);
+    dataRow.push(row[status]);
+    
     // Add section data
     var col = (this.sections[section].start - 1);
     for (col; col < range; col++) {
