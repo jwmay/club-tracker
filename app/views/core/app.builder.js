@@ -58,7 +58,7 @@ function getAppPage(page, args) {
       controller = new ViewAttendance();
       break;
     case 'viewMembers':
-      controller = new ViewMembers();
+      controller = new ViewMembers(args);
       break;
     default:
       controller = new Dashboard();

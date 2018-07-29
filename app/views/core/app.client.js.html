@@ -33,6 +33,16 @@ $(document).ready(function() {
     getPage($(this).data('page'));
   });
 
+  // Handle the dynamically-generated apply filters button click
+  $(document).on('click', '#applyFilter', function() {
+    var filters = {},
+        page = $(this).data('page');
+    $('.filter-select').each(function() {
+      filters[$(this).attr('id')] = $(this).val();
+    });
+    getPage(page, {filters: filters});
+  });
+
   // Handle the attendance action button selections, which involves enabling a
   // text input when the 'excused' absence type is selected, and disabling the
   // input when the 'present' or 'absent' type is selected

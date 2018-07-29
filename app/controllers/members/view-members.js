@@ -20,10 +20,19 @@
  * 
  * Handles creating the layout for the page sections and for processing the
  * user input by inserting the form data into the database spreadsheet.
+ * 
+ * @param {Object} args Optional args object for passing filters.
  */
-var ViewMembers = function() {
+var ViewMembers = function(args) {
   this._db = new Database();
+  this._form = new FormBuilder();
   this._pageTitle = 'View Members';
+  this._filters = null;
+
+  // Process args object
+  if (typeof args !== 'undefined' && args !== null) {
+    if (args.hasOwnProperty('filters')) this._filters = args.filters;
+  }
 };
 
 
@@ -33,7 +42,47 @@ var ViewMembers = function() {
  * @returns {String} The page header.
  */
 ViewMembers.prototype.getHeader = function() {
-  return '<h1>' + this._pageTitle + '</h1>';
+  // Construct the objects for displaying select elements
+  var memberStatusSelect = {
+    title: 'Member Status',
+    name: 'memberStatusFilter',
+    selected: (this._filters !== null) ? this._filters.memberStatusFilter : '',
+    labels: ['all', 'good', 'probation', 'dismissal'],
+    values: ['all', 'good', 'probation', 'dismissal'],
+    classes: ['filter-select'],
+    required: false,
+    defaultValue: 'all'
+  };
+
+  var membershipStatusSelect = {
+    title: 'Membership Status',
+    name: 'membershipStatusFilter',
+    selected: (this._filters !== null) ? this._filters.membershipStatusFilter : '',
+    labels: ['active', 'all', 'dismissed', 'graduated', 'resigned'],
+    values: ['active', 'all', 'dismissed', 'graduated', 'resigned'],
+    classes: ['filter-select'],
+    required: false,
+    defaultValue: 'active'
+  };
+
+  var content = '' +
+      '<h1>' + this._pageTitle + '</h1>' +
+      '<div class="filter-bar">' +
+        '<h5>Filters</h5>' +
+        '<div class="row">' +
+          '<div class="input-field col s12 m3">' +
+            this._form.insertSelect(memberStatusSelect) +
+          '</div>' +
+          '<div class="input-field col s12 m3">' +
+            this._form.insertSelect(membershipStatusSelect) +
+          '</div>' +
+          '<div class="filter-buttons col s12 m3">' +
+            '<a class="btn wave-effect waves-light" id="applyFilter" ' +
+                'data-page="viewMembers">Apply</a>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+  return content;
 }
 
 
@@ -46,26 +95,30 @@ ViewMembers.prototype.getMain = function() {
   var members = [],
       memberInfo = this.getMemberInformation_(),
       content = '';
-  while (memberInfo.hasNext()) {
-    var member = memberInfo.getNext();
-    members.push({
-      rosterId: member[0],
-      lastName: member[1],
-      firstName: member[2],
-      memberStatus: member[3],
-      membershipStatus: member[4],
-      yearJoined: member[5],
-      grade: member[6],
-      gender: member[7],
-      totalAttendanceRate: member[8]
-    });
+  if (memberInfo.hasNext()) {
+    while (memberInfo.hasNext()) {
+      var member = memberInfo.getNext();
+      members.push({
+        rosterId: member[0],
+        lastName: member[1],
+        firstName: member[2],
+        memberStatus: member[3],
+        membershipStatus: member[4],
+        yearJoined: member[5],
+        grade: member[6],
+        gender: member[7],
+        totalAttendanceRate: member[8]
+      });
+    }
+    content += '<div class="table">';
+    for (var i = 0; i < members.length; i++) {
+      var member = members[i];
+      content += this.getTableRow_(member);
+    }
+    content += '</div>';
+  } else {
+  content += '<div class="no-results">No results found.</div>';
   }
-  content += '<div class="table">';
-  for (var i = 0; i < members.length; i++) {
-    var member = members[i];
-    content += this.getTableRow_(member);
-  }
-  content += '</div>';
   return content;
 }
 
@@ -85,10 +138,11 @@ ViewMembers.prototype.getFooter = function() {
 
 
 /**
- * Returns the member information data sorted by last name.
+ * Returns the member information data sorted by last name with any given
+ * filters applied.
  * 
  * @private
- * @returns {Array[][]} The member information, sorted by last name.
+ * @returns {DataSet} The member information, filtered and sorted by last name.
  */
 ViewMembers.prototype.getMemberInformation_ = function() {
   var fields = [
@@ -103,6 +157,17 @@ ViewMembers.prototype.getMemberInformation_ = function() {
     this._db.sections.attendance.fields.totalAttendanceRate
   ];
   var memberInfo = this._db.getSelectedFields(fields);
+  
+  // Apply filters
+  if (this._filters !== null) {
+    memberInfo.filterByField(3, this._filters.memberStatusFilter);
+    memberInfo.filterByField(4, this._filters.membershipStatusFilter);
+  } else {
+    // Set default filter on membership status to active
+    memberInfo.filterByField(4, 'active');
+  }
+  
+  // Sort by last name and return the object instance
   return memberInfo.sortByField(1);
 }
 
@@ -119,7 +184,7 @@ ViewMembers.prototype.getTableRow_ = function(member) {
       attendance = (member.totalAttendanceRate !== '') ? getPercentString(member.totalAttendanceRate) : 'NA',
       memberStatus = {};
   switch(member.memberStatus) {
-    case 'good standing':
+    case 'good':
       memberStatus = {
         color: 'green',
         icon: 'smile'
