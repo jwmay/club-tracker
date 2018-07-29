@@ -23,9 +23,7 @@
  */
 var DataSet = function(data, fieldNames) {
   this._data = data;
-  this._dataStored = data;
   this._fields = (typeof fieldNames === 'undefined') ? null : fieldNames;
-  
 };
 
 
@@ -35,14 +33,14 @@ var DataSet = function(data, fieldNames) {
  * @returns {Array[][]} The data.
  */
 DataSet.prototype.getData = function() {
-  return this._dataStored;
+  return this._data;
 }
 
 
 /**
  * Returns the field names represented by the DataSet object.
  * 
- * @returns {Array[][]} The field names.
+ * @returns {Array} The field names.
  */
 DataSet.prototype.getFields = function() {
   return this._fields;
@@ -71,10 +69,22 @@ DataSet.prototype.hasNext = function() {
 
 
 /**
- * Resets getNext() to the start of the data array.
+ * Filters the data by the given field and value.
+ * 
+ * If the given value is 'all', no filtering will be done.
+ * 
+ * @param {Integer} field The field index to filter.
+ * @param {String} value The field value to filter.
+ * @returns {This} The DataSet instance for chaining.
  */
-DataSet.prototype.reset = function() {
-  this._data = this._dataStored;
+DataSet.prototype.filterByField = function(field, value) {
+  if (value !== 'all') {
+    var filteredData = this._data.filter(function(row) {
+      return (row[field] === value);
+    });
+    this._data = filteredData;
+  }
+  return this;
 }
 
 
@@ -84,27 +94,25 @@ DataSet.prototype.reset = function() {
  * 
  * @param {Integer} field The field index to sort.
  * @param {Boolean} reverse Reverse data if true.
+ * @returns {This} The DataSet instance for chaining.
  */
 DataSet.prototype.sortByField = function(field, reverse) {
   reverse = (typeof reverse === 'undefined' ? false : reverse);
-  if (this.hasNext()) {
-    this._dataStored.sort(function(a, b) {
-      if (a[field] === b[field]) {
-        if (field + 1 <= a.length) {
-          if (a[field+1] === b[field+1]) {
-            return 0;
-          } else {
-            return (a[field+1] < b[field+1]) ? -1 : 1;
-          }
-        } else {
+  this._data.sort(function(a, b) {
+    if (a[field] === b[field]) {
+      if (field + 1 <= a.length) {
+        if (a[field+1] === b[field+1]) {
           return 0;
+        } else {
+          return (a[field+1] < b[field+1]) ? -1 : 1;
         }
       } else {
-        return (a[field] < b[field]) ? -1 : 1;
+        return 0;
       }
-    });
-    if (reverse === true) this._dataStored.reverse();
-  }
-  this.reset();
+    } else {
+      return (a[field] < b[field]) ? -1 : 1;
+    }
+  });
+  if (reverse === true) this._data.reverse();
   return this;
 }
