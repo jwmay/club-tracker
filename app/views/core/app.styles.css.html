@@ -7167,10 +7167,26 @@ body.app-loading {
     height: 56px;
     width: 56px; }
 
-form label.error {
-  top: -35%;
-  font-style: italic;
-  color: #CF5E25; }
+.filter-bar h5 {
+  margin-bottom: 0; }
+
+.filter-bar .input-field {
+  margin-top: 0; }
+
+.filter-bar .filter-buttons a.btn, .filter-bar .filter-buttons a.btn-large, .filter-bar .filter-buttons a.btn-small {
+  margin-top: 10px;
+  margin-bottom: 30px; }
+  @media only screen and (min-width: 601px) {
+    .filter-bar .filter-buttons a.btn, .filter-bar .filter-buttons a.btn-large, .filter-bar .filter-buttons a.btn-small {
+      margin-top: 30px;
+      margin-bottom: 0; } }
+
+.no-results {
+  width: 100%;
+  margin: 2rem 0;
+  text-align: center;
+  font-size: 2rem;
+  color: #ccc; }
 
 .selector .selector-title {
   margin: 0;
@@ -7243,6 +7259,11 @@ form label.error {
   .selector.selector-large label.selector-red span:after {
     border-color: #CF5E25;
     background-color: #CF5E25; }
+
+form label.error {
+  top: -35%;
+  font-style: italic;
+  color: #CF5E25; }
 
 .attendance .card-content {
   -webkit-box-align: center;

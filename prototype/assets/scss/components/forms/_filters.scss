@@ -1,0 +1,29 @@
+.filter-bar {
+  
+  h5 {
+    margin-bottom: 0;
+  }
+
+  .input-field {
+    margin-top: 0;
+  }
+
+  .filter-buttons a.btn {
+    margin-top: 10px;
+    margin-bottom: 30px;
+
+    @media #{$medium-and-up} {
+      margin-top: 30px;
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+.no-results {
+  width: 100%;
+  margin: 2rem 0;
+  text-align: center;
+  font-size: 2rem;
+  color: #ccc;
+}
