@@ -71,6 +71,7 @@ FormBuilder.prototype.insertSelector = function(inputs) {
  *  - inputs.selected      (string)   the selected value
  *  - inputs.labels        (array)    the labels for each option
  *  - inputs.values        (array)    the values for each option
+ *  - inputs.classes       (array)    the class names to add to the select
  *  - inputs.required      (boolean)  true if select is to be required
  *  - inputs.defaultValue  (string)   the default value is none is selected
  * 
@@ -88,11 +89,18 @@ FormBuilder.prototype.insertSelect = function(inputs) {
     inputs.selected = inputs.defaultValue;
   }
 
+  // Process the given classes
+  if (inputs.hasOwnProperty('classes') === false) {
+    inputs.classes = '';
+  } else {
+    inputs.classes = inputs.classes.join(' ');
+  }
+
   // Construct and return the select
   var required = (inputs.required === true) ? ' required' : '';
   var select = '' +
       '<select id="' + inputs.name + '" name="' + inputs.name + '"' +
-          required + '>';
+          'class="' + inputs.classes + '"' + required + '>';
   for (var i = 0; i < inputs.labels.length; i++) {
     var selected = (inputs.selected.toString() === inputs.values[i].toString()) ? ' selected' : '';
     select += '' +
