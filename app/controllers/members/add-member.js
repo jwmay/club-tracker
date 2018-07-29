@@ -91,7 +91,7 @@ AddMember.prototype.getMain = function() {
     studentNumber: (edit ? record[8] : '')
   }
 
-  // Construct the selector objects for displaying selector and select elements
+  // Construct the objects for displaying selector and select elements
   var gradeSelector = {
     title: 'Grade',
     name: 'grade',
