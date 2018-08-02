@@ -80,7 +80,6 @@ Database.prototype.getData = function() {
  */
 Database.prototype.getDataBySection = function(section) {
   var fields = this.getFieldNames(),
-      range = this.sections[section].range,
       fieldNames = [],
       data = [];
   for (var i = 0; i < this.data.length; i++) {
@@ -100,7 +99,8 @@ Database.prototype.getDataBySection = function(section) {
     dataRow.push(row[status]);
     
     // Add section data
-    var col = (this.sections[section].start - 1);
+    var col = (this.sections[section].start - 1),
+        range = (col + this.sections[section].range);
     for (col; col < range; col++) {
       if (fields[col] !== '') {
         if (i === 0) fieldNames.push(fields[col]);
@@ -391,6 +391,8 @@ Database.prototype.writeRecord_ = function(index, record) {
   for (var field in record) {
     if (this.hasField('memberInformation', field)) {
       section = this.sections.memberInformation;
+    } else if (this.hasField('financial', field)) {
+      section = this.sections.financial;
     } else {
       section = this.sections.roster;
     }
