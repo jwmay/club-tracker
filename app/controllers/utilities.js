@@ -27,6 +27,17 @@ function getDateString(date) {
 
 
 /**
+ * Returns the given amount as a formatted string '$AMT'.
+ * 
+ * @param {Number} amount The dollar amount.
+ * @returns {String} The dollar amount as a formatted string.
+ */
+function getDollarString(amount) {
+  return ('$' + amount);
+}
+
+
+/**
  * Returns the color name for the given percnet.
  * 
  * @param {Number} percent The percent.
@@ -53,6 +64,28 @@ function getPercentColor(percent) {
  */
 function getPercentString(percent) {
   return (percent * 100 + '%');
+}
+
+
+/**
+ * Returns the color name for the given yes or no value.
+ * 
+ * @param {String} value The input value as yes or no.
+ * @returns {String} The color name corresponding to the given value.
+ */
+function getYesNoColor(value) {
+  if (value === 'yes') return 'green';
+  if (value === 'no') return 'red';
+}
+
+
+/**
+ * Logs the given message into the Google Apps Script logger.
+ * 
+ * @param {String} message The log message.
+ */
+function log(message) {
+  Logger.log(message);
 }
 
 

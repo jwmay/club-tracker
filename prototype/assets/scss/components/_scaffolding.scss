@@ -50,3 +50,14 @@ footer {
 .row:last-of-type {
   margin-bottom: 0;
 }
+
+a.link {
+  text-decoration: none;
+  color: darken($secondary-color, 5%);
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: lighten($secondary-color, 5%);
+  }
+}

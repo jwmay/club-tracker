@@ -20,6 +20,11 @@ $(document).ready(function() {
   $(document).on('click', '#editMember', function() {
     getPage('editMember', {rosterId: $(this).data('rosterid')});
   });
+  
+  // Handle the edit account link click
+  $(document).on('click', '#editAccount', function() {
+    getPage('editAccount', {rosterId: $(this).data('rosterid')});
+  });
 
   // Handle the dynamically-generated submit button click
   $('form.application').submit(function() {
@@ -96,19 +101,44 @@ function submit() {
   var page = $('#submit').data('page');
   showLoading();
   switch(page) {
-    case 'takeAttendance':
-      getAttendance_();
-      break;
     case 'addMember':
       getMember_();
+      break;
+    case 'editAccount':
+      getAccount_();
+      break;
+    case 'takeAttendance':
+      getAttendance_();
       break;
   }
 }
 
 
 /**
- * Gathers the form data and runs server-side functions to write save data in
- * the database spreadsheet for the 'Take Attendance' page.
+ * Gathers the form data and runs server-side functions to write account data
+ * in the database spreadsheet for the 'Edit Account' page.
+ * 
+ * @private
+ */
+function getAccount_() {
+  var form = new FormHandler();
+  var account = {
+    rosterId: form.getValue('#rosterId'),
+    fundraiserAmountCheckedOut: form.getValue('#fundraiserAmountCheckedOut'),
+    fundraiserAmountCheckedIn: form.getValue('#fundraiserAmountCheckedIn'),
+    finesCharged: form.getValue('#finesCharged'),
+    finesPaid: form.getValue('#finesPaid'),
+    membershipFeePaid: form.getValue('#membershipFeePaid')
+  };
+  google.script.run
+    .withSuccessHandler(updateDisplay)
+    .saveAccount(account);
+}
+
+
+/**
+ * Gathers the form data and runs server-side functions to write attendance
+ * data in the database spreadsheet for the 'Take Attendance' page.
  * 
  * @private
  */
@@ -129,7 +159,7 @@ function getAttendance_() {
 
 
 /**
- * Gathers the form data and runs server-side functions to write save data in
+ * Gathers the form data and runs server-side functions to write member data in
  * the database spreadsheet for the 'Add/Edit Member' page.
  * 
  * @private

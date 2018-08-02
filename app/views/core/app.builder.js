@@ -48,11 +48,17 @@ function getAppPage(page, args) {
     case 'dashboard':
       controller = new Dashboard();
       break;
+    case 'editAccount':
+      controller = new EditAccount(args);
+      break;
     case 'editMember':
       controller = new AddMember('edit', args);
       break;
     case 'takeAttendance':
       controller = new TakeAttendance();
+      break;
+    case 'viewAccounts':
+      controller = new ViewAccounts();
       break;
     case 'viewAttendance':
       controller = new ViewAttendance();
