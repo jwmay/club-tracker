@@ -206,7 +206,7 @@ AddMember.prototype.getFooter = function() {
  * Inserts the given form values into the database and returns an array of
  * DisplayObjects containing the components of the message page to display.
  * 
- * @param {Object} attendance The form values containing the user input.
+ * @param {Object} member The form values containing the user input.
  * @returns {DisplayObject[]} The app page to display.
  */
 AddMember.prototype.saveMember = function(member) {
