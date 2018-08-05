@@ -22,3 +22,8 @@ nav i.material-icons {
     margin-right: 0;
   }
 }
+
+// Trigger not used as link, but show cursor
+.sidenav-trigger {
+  cursor: pointer;
+}
