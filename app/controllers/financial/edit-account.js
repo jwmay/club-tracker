@@ -185,7 +185,7 @@ EditAccount.prototype.saveAccount = function(account) {
 EditAccount.prototype.getSuccess_ = function() {
   return '' +
     '<div class="panels">' +
-      '<div class="panel" data-page="viewAccounts">' +
+      '<div class="panel panel-full" data-page="viewAccounts">' +
         '<i class="fas fa-fw fa-3x fa-eye"></i>' +
         '<h5>View Accounts</h5>' +
       '</div>' +
