@@ -64,7 +64,7 @@ ViewAccounts.prototype.getMain = function() {
       finesPaid: member[12]
     });
   }
-  content += '<div class="table">';
+  content += '<div class="table accounts">';
   for (var i = 0; i < members.length; i++) {
     var member = members[i];
     content += this.getTableRow_(member);
