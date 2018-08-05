@@ -26,6 +26,15 @@ $(document).ready(function() {
     getPage('editAccount', {rosterId: $(this).data('rosterid')});
   });
 
+  // Handle incrementer button clicks
+  $(document).on('click', '.increment', function() {
+    var $this = $(this),
+        amount = parseInt($this.data('amount')),
+        input = $this.parent('.incrementer').siblings('input'),
+        inputValue = parseInt(input.val());
+    input.val(inputValue + amount);
+  });
+
   // Handle the dynamically-generated submit button click
   $('form.application').submit(function() {
     if ($(this).valid()) {
@@ -102,13 +111,16 @@ function submit() {
   showLoading();
   switch(page) {
     case 'addMember':
-      getMember_();
+      submitMember_();
       break;
     case 'editAccount':
-      getAccount_();
+      submitAccount_();
+      break;
+    case 'runFundraiser':
+      submitFundraiser_();
       break;
     case 'takeAttendance':
-      getAttendance_();
+      submitAttendance_();
       break;
   }
 }
@@ -120,7 +132,7 @@ function submit() {
  * 
  * @private
  */
-function getAccount_() {
+function submitAccount_() {
   var form = new FormHandler();
   var account = {
     rosterId: form.getValue('#rosterId'),
@@ -142,7 +154,7 @@ function getAccount_() {
  * 
  * @private
  */
-function getAttendance_() {
+function submitAttendance_() {
   var form = new FormHandler();
   var attendance = {
     date: form.getValue('#date'),
@@ -159,12 +171,31 @@ function getAttendance_() {
 
 
 /**
+ * Gathers the form data and runs server-side functions to write fundraiser
+ * data in the database spreadsheet for the 'Run Fundraiser' page.
+ * 
+ * @private
+ */
+function submitFundraiser_() {
+  var form = new FormHandler();
+  var accounts = {
+    rosterIds: form.getValues('input[name="rosterId"]'),
+    fundraiserAmountsCheckedOut: form.getValues('input[name^="checkedOut-"]'),
+    fundraiserAmountsCheckedIn: form.getValues('input[name^="checkedIn-"]')
+  };
+  google.script.run
+    .withSuccessHandler(updateDisplay)
+    .saveFundraiser(accounts);
+}
+
+
+/**
  * Gathers the form data and runs server-side functions to write member data in
  * the database spreadsheet for the 'Add/Edit Member' page.
  * 
  * @private
  */
-function getMember_() {
+function submitMember_() {
   var form = new FormHandler();
   var member = {
     rosterId: form.getValue('#rosterId'),

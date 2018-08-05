@@ -7068,6 +7068,8 @@ body.app-loading {
     .panels .panel:hover {
       color: #696969;
       background-color: rgba(0, 0, 0, 0.05); }
+    .panels .panel.panel-full {
+      width: 100%; }
     .panels .panel.panel-2 {
       width: 50%; }
     .panels .panel.panel-3 {
@@ -7202,6 +7204,26 @@ body.app-loading {
   font-size: 2rem;
   color: #ccc; }
 
+.incrementer {
+  display: inline-block; }
+  .incrementer span.increment {
+    display: inline-block;
+    border: 1px solid #C2B22C;
+    color: #C2B22C;
+    border-radius: 100%;
+    font-size: 12px;
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 4px; }
+    .incrementer span.increment:last-of-type {
+      margin-right: 0; }
+    .incrementer span.increment:hover, .incrementer span.increment:focus {
+      background-color: #C2B22C;
+      color: #fff; }
+
 .selector .selector-title {
   margin: 0;
   margin-bottom: 10px;
@@ -7279,6 +7301,11 @@ form label.error {
   font-style: italic;
   color: #CF5E25; }
 
+.accounts .data .data-dot {
+  width: 38px;
+  height: 38px;
+  font-size: 16px; }
+
 .attendance .card-content {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -7306,6 +7333,10 @@ form label.error {
     @media only screen and (min-width: 601px) {
       .attendance .card-content .input-field {
         width: 30%; } }
+
+.fundraiser .data input {
+  width: 60px;
+  text-align: center; }
 
 .message .card, .message .table .table-row, .table .message .table-row {
   padding: 0; }

@@ -3,12 +3,6 @@ $(document).ready(function() {
   $('.datepicker').datepicker();
   $('select').formSelect();
 
-  // $('.tooltipped').tooltip({
-  //   margin: 1,
-  //   position: 'top'
-  // });
-
-
   // Handle the attendance action button selections, which involves enabling a
   // textarea when the 'excused' absence type is selected, and disabling the
   // textarea when the 'present' or 'absent' type is selected
@@ -31,7 +25,6 @@ $(document).ready(function() {
     }
   });
 
-  
   // Toggle the loading display
   $('#fundraising').click(function() {
     $('html').scrollTop(0);
@@ -39,10 +32,12 @@ $(document).ready(function() {
     $('.app-loading-overlay').toggle();
   });
 
-
-
-
-  // $('input[name="quarter"]').click(function() {
-    // console.log( $('input[name="quarter"]:checked').val() );
-  // });
+  // Incrementer controls
+  $('.increment').click(function() {
+    var $this = $(this),
+        amount = parseInt($this.data('amount')),
+        input = $this.parent('.incrementer').siblings('input'),
+        inputValue = parseInt(input.val());
+    input.val(inputValue + amount);
+  });
 });

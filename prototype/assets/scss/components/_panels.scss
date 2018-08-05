@@ -15,6 +15,10 @@
       background-color: $gray-color;
     }
     
+    &.panel-full {
+      width: 100%;
+    }
+    
     &.panel-2 {
       width: 50%;
     }

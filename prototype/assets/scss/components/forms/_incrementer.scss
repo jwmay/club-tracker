@@ -1,0 +1,26 @@
+.incrementer {
+  display: inline-block;
+
+  span.increment {
+    display: inline-block;
+    border: 1px solid $secondary-color;
+    color: $secondary-color;
+    border-radius: 100%;
+    font-size: 12px;
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 4px;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    &:hover, &:focus {
+      background-color: $secondary-color;
+      color: $white;
+    }
+  }
+}
