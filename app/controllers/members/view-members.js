@@ -109,6 +109,7 @@ ViewMembers.prototype.getMain = function() {
         gender: member[7],
         totalAttendanceRate: member[8],
         accountBalance: member[9],
+        communityServiceHours: member[10],
       });
     }
     content += '<div class="table">';
@@ -157,6 +158,7 @@ ViewMembers.prototype.getMemberInformation_ = function() {
     this._db.sections.memberInformation.fields.gender,
     this._db.sections.attendance.fields.totalAttendanceRate,
     this._db.sections.financial.fields.accountBalance,
+    this._db.sections.communityService.fields.totalHours,
   ];
   var memberInfo = this._db.getSelectedFields(fields);
   
@@ -231,6 +233,10 @@ ViewMembers.prototype.getTableRow_ = function(member) {
       '<div class="data">' +
         '<span class="data-title">Account Balance</span>' +
         '<span class="data-value">$' + member.accountBalance + '</span>' +
+      '</div>' +
+      '<div class="data">' +
+        '<span class="data-title">Community Service Hours</span>' +
+        '<span class="data-value">' + member.communityServiceHours + '</span>' +
       '</div>' +
       '<div class="table-action-button waves-effect waves-light" ' +
           'id="editMember" data-rosterid="' + member.rosterId + '">' +
