@@ -97,14 +97,11 @@ TakeAttendance.prototype.getMain = function() {
       content = '';
   while (roster.hasNext()) {
     var member = roster.getNext();
-    // Only display active members
-    if (member[3] === 'active') {
-      members.push({
-        rosterId: member[0],
-        lastName: member[1],
-        firstName: member[2]
-      });
-    }
+    members.push({
+      rosterId: member[0],
+      lastName: member[1],
+      firstName: member[2]
+    });
   }
   content = '' +
     '<div class="row">' +
@@ -155,7 +152,7 @@ TakeAttendance.prototype.saveAttendance = function(attendance) {
         data: attendance.marks,
         notes: attendance.reasons
       }]
-    }
+    };
     this._db.setFieldData(data);
     return getSuccessPage(this._pageTitle, 'Attendance saved',
       this.getSuccess_());
@@ -173,8 +170,8 @@ TakeAttendance.prototype.saveAttendance = function(attendance) {
  * @returns {String} The member card.
  */
 TakeAttendance.prototype.getCard_ = function(member) {
-  var marksName = 'attendance-' + member.rosterId;
-  var reasonName = 'reason-' + member.rosterId;
+  var marksName = 'attendance-' + member.rosterId,
+      reasonName = 'reason-' + member.rosterId;
   return '' +
     '<div class="card">' +
       '<div class="card-content">' +
@@ -207,10 +204,10 @@ TakeAttendance.prototype.getCard_ = function(member) {
 
 
 /**
- * Returns the roster data sorted by last name.
+ * Returns the roster data sorted by last name and filtered for active members.
  * 
  * @private
- * @returns {Array[][]} 
+ * @returns {DataSet} The roster data, filtered and sorted by last name.
  */
 TakeAttendance.prototype.getRoster_ = function() {
   var fields = [
@@ -220,7 +217,9 @@ TakeAttendance.prototype.getRoster_ = function() {
     this._db.sections.memberInformation.fields.membershipStatus
   ];
   var roster = this._db.getSelectedFields(fields);
-  return roster.sortByField(1);
+  return roster
+    .filterByField(3, 'active')
+    .sortByField(1);
 }
 
 
