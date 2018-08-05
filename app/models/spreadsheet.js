@@ -133,7 +133,7 @@ SpreadsheetHelper.prototype.getSpreadsheet = function() {
  * @param {Integer} row The row number.
  * @param {Integer} col The column number.
  * @param {String} value The cell value.
- * @param {String} note The cell note.
+ * @param {String} note The cell note. Optional.
  */
 SpreadsheetHelper.prototype.setCell = function(row, col, value, note) {
   note = (typeof note === 'undefined') ? '' : note;
