@@ -96,7 +96,8 @@ EditAccount.prototype.getMain = function() {
     selected: member.membershipFeePaid,
     labels: ['yes', 'no'],
     values: ['yes', 'no'],
-    required: true
+    required: true,
+    defaultValue: 'no'
   };
 
   return '' +
