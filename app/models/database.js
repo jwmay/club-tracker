@@ -73,7 +73,7 @@ Database.prototype.getData = function() {
 
 /**
  * Returns a DataSet object containing data and field names for the roster
- * section and the specified section.
+ * section, membership status, and the specified section.
  * 
  * @param {String} section The section name.
  * @returns {DataSet} The data and field names for the given section.
@@ -261,7 +261,7 @@ Database.prototype.setFieldData = function(entries) {
           var rowIndex = this.getRowById(entries.rosterIds[dataIndex]),
               colIndex = currentColNum,
               value = field.data[dataIndex],
-              note = field.notes[dataIndex];
+              note = (field.hasOwnProperty('notes') ? field.notes[dataIndex] : '');
           this.spreadsheet.setCell(rowIndex, colIndex, value, note);
         }
       }
