@@ -69,6 +69,9 @@ function getAppPage(page, args) {
     case 'viewAttendance':
       controller = new ViewAttendance();
       break;
+    case 'viewCommunityService':
+      controller = new ViewCommunityService();
+      break;
     case 'viewMembers':
       controller = new ViewMembers(args);
       break;

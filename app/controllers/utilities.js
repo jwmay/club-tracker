@@ -73,6 +73,25 @@ function getDollarString(amount) {
 
 
 /**
+ * Returns the color name for the given hours.
+ * 
+ * @param {Number} hours The hours.
+ * @returns {String} The color name corresponding to the given hours.
+ */
+function getHoursColor(hours) {
+  var colors = [
+    [40, 'green'],
+    [30, 'yellow'],
+    [0, 'red']
+  ];
+  var color = colors.find(function(colorInfo) {
+    return (hours >= colorInfo[0]);
+  });
+  return color[1];
+}
+
+
+/**
  * Returns the color name for the given percnet.
  * 
  * @param {Number} percent The percent.
