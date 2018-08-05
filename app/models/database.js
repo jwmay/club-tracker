@@ -93,10 +93,12 @@ Database.prototype.getDataBySection = function(section) {
       dataRow.push(row[j]);
     }
     
-    // Add membership status
-    var status = (this.sections.memberInformation.fields.membershipStatus - 1);
-    if (i === 0) fieldNames.push(fields[status]);
-    dataRow.push(row[status]);
+    // Add membership status, if not getting data from member information
+    if (section !== 'memberInformation') {
+      var status = (this.sections.memberInformation.fields.membershipStatus - 1);
+      if (i === 0) fieldNames.push(fields[status]);
+      dataRow.push(row[status]);
+    }
     
     // Add section data
     var col = (this.sections[section].start - 1),
