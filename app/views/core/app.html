@@ -38,10 +38,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <?!= include('views/core/display/lib.display.client.js'); ?>
     <?!= include('views/core/display/lib.display.forms.client.js'); ?>
     <script>
       <?!= include('views/core/app.client.js'); ?>
+      google.charts.load('current', {packages: ['corechart']});
     </script>
   </body>
 </html>

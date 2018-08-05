@@ -39,6 +39,11 @@ function updateDisplay(displayObject) {
   $(document).ready(function() {
     M.updateTextFields();
   });
+
+  // Display Google Charts
+  $(document).ready(function() {
+    google.charts.setOnLoadCallback(drawCharts);
+  });
 }
 
 

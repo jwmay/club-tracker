@@ -28,6 +28,22 @@ var DataSet = function(data, fieldNames) {
 
 
 /**
+ * Returns the count of the number of times the given value is found in the
+ * data for the given field.
+ * 
+ * @param {Integer} field The field index to count.
+ * @param {String|Number} value The value to count.
+ * @returns {Integer} The number of times the value is found in the field.
+ */
+DataSet.prototype.countByField = function(field, value) {
+  var filteredData = this._data.filter(function(row) {
+    return (row[field] === value);
+  });
+  return filteredData.length;
+}
+
+
+/**
  * Returns the data represented by the DataSet object.
  * 
  * @returns {Array[][]} The data.

@@ -130,6 +130,17 @@ function submit() {
 
 
 /**
+ * Calls the server-side function to gather the chart data and displays the
+ * charts when the data is returned.
+ */
+function drawCharts() {
+  google.script.run
+    .withSuccessHandler(showCharts_)
+    .getCharts();
+}
+
+
+/**
  * Gathers the form data and runs server-side functions to write account data
  * in the database spreadsheet for the 'Edit Account' page.
  * 
@@ -233,4 +244,47 @@ function submitShirts_() {
   google.script.run
     .withSuccessHandler(updateDisplay)
     .saveShirts(shirts);
+}
+
+
+/**
+ * Constructs the chart displays for the dashboard.
+ * 
+ * @param charts The chart data to display.
+ */
+function showCharts_(charts) {
+  try {
+    for (var chartName in charts) {
+      var chart = charts[chartName],
+          data = google.visualization.arrayToDataTable(chart.data),
+          options = {'title': chart.title},
+          chart = getChartByType_(chart.type, chart.target);
+      chart.draw(data, options);
+    }
+  } catch(error) {
+    // *** HACK *** chart scripts currently run on all page views, and throw an
+    // error to the console when viewing any page other than the dashboard; this
+    // 'empty' catch just prevents the console logs, but really, the chart
+    // scripts should only be run on the dashboard page
+    return null;
+  }
+}
+
+
+/**
+ * Returns the Google Chart object for the given chart type that will be
+ * displayed in the given target.
+ * 
+ * @param {String} type The type of chart to return.
+ * @param {String} target A selector for the target element where the chart
+ *    will be displayed.
+ */
+function getChartByType_(type, target) {
+  var element = document.getElementById(target);
+  switch(type) {
+    case 'pieChart':
+      return new google.visualization.PieChart(element);
+    case 'barChart':
+      return new google.visualization.BarChart(element);
+  }
 }

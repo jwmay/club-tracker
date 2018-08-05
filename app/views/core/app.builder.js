@@ -27,7 +27,7 @@ function getHtml(filename) {
   var template = HtmlService.createTemplateFromFile(filename);
   return template.evaluate()
     .setTitle('NHS Tracker')
-    .setFaviconUrl('http://www.iconj.com/ico/x/u/xu8sd50zpv.ico')
+    // .setFaviconUrl('http://www.iconj.com/ico/x/u/xu8sd50zpv.ico')
     .addMetaTag('viewport', 'width=device-width, initial-scale=1');
 }
 
