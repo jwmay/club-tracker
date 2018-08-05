@@ -63,7 +63,7 @@ function getPercentColor(percent) {
  * @returns {String} The formatted percent with % symbol appended.
  */
 function getPercentString(percent) {
-  return (percent * 100 + '%');
+  return (Math.round(percent * 100) + '%');
 }
 
 
