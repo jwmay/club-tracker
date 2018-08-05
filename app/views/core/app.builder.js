@@ -54,6 +54,9 @@ function getAppPage(page, args) {
     case 'editMember':
       controller = new AddMember('edit', args);
       break;
+    case 'manageShirts':
+      controller = new ManageShirts();
+      break;
     case 'runFundraiser':
       controller = new RunFundraiser();
       break;
