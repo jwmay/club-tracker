@@ -27,6 +27,18 @@ function getDateString(date) {
 
 
 /**
+ * Returns the color name for the given dollar amount.
+ * 
+ * @param {Number} amount The dollar amount.
+ * @returns {String} The color name corresponding to the given dollar amount.
+ */
+function getDollarColor(amount) {
+  if (amount === 0) return 'green';
+  if (amount > 0) return 'yellow';
+}
+
+
+/**
  * Returns the given amount as a formatted string '$AMT'.
  * 
  * @param {Number} amount The dollar amount.

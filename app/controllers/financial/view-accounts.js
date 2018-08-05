@@ -114,7 +114,8 @@ ViewAccounts.prototype.getTableRow_ = function(member) {
           member.lastName + ', ' + member.firstName +
         '</a>' +
       '</div>' +
-      '<div class="data data-highlight">' +
+      '<div class="data data-highlight highlight-' +
+          getDollarColor(member.balance) + '">' +
         '<span class="data-title">Account Balance</span>' +
         '<span class="data-value">' + getDollarString(member.balance) + '</span>' +
       '</div>' +
