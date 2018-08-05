@@ -89,7 +89,11 @@ RunFundraiser.prototype.getFooter = function() {
   return '' +
     '<button id="submit" class="btn btn-large waves-effect waves-light" ' +
         'data-page="runFundraiser">' +
-      'Submit' +
+      'Save' +
+    '</button>' +
+    '<button id="cancel" class="btn btn-large btn-flat waves-effect waves-light" ' +
+        'data-page="viewAccounts" type="button">' +
+      'Cancel' +
     '</button>';
 }
 
