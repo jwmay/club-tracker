@@ -68,12 +68,12 @@ FormBuilder.prototype.insertSelector = function(inputs) {
  * The inputs object should have  the following keys:
  *  - inputs.title         (string)   the select title
  *  - inputs.name          (string)   the select name
- *  - inputs.selected      (string)   the selected value
+ *  - inputs.selected      (string)   the selected value (optional)
  *  - inputs.labels        (array)    the labels for each option
  *  - inputs.values        (array)    the values for each option
  *  - inputs.classes       (array)    the class names to add to the select
  *  - inputs.required      (boolean)  true if select is to be required
- *  - inputs.defaultValue  (string)   the default value is none is selected
+ *  - inputs.defaultValue  (string)   the default value if none is selected
  * 
  * @param {Object} inputs The select input data.
  * @returns {String} The HTML-formatted string select element.
@@ -102,7 +102,10 @@ FormBuilder.prototype.insertSelect = function(inputs) {
       '<select id="' + inputs.name + '" name="' + inputs.name + '"' +
           'class="' + inputs.classes + '"' + required + '>';
   for (var i = 0; i < inputs.labels.length; i++) {
-    var selected = (inputs.selected.toString() === inputs.values[i].toString()) ? ' selected' : '';
+    var selected = '';
+    if (inputs.hasOwnProperty('selected') && typeof inputs.selected !== 'undefined') {
+      selected = (inputs.selected.toString() === inputs.values[i].toString()) ? ' selected' : '';
+    }
     select += '' +
         '<option value="' + inputs.values[i] + '"' + selected + '>' + inputs.labels[i] + '</option>';
   }
