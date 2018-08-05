@@ -41,3 +41,26 @@ $(document).ready(function() {
     input.val(inputValue + amount);
   });
 });
+
+
+function drawCharts() {
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Topping');
+  data.addColumn('number', 'Slices');
+  data.addRows([
+    ['Mushrooms', 3],
+    ['Onions', 1],
+    ['Olives', 1],
+    ['Zucchini', 1],
+    ['Pepperoni', 2]
+  ]);
+  var options = {
+    'title': 'How Much Pizza I Ate Last Night'
+  };
+  var pieChart = new google.visualization.PieChart(document.getElementById('chart_div1'));
+  pieChart.draw(data, options);
+  var barChart = new google.visualization.BarChart(document.getElementById('chart_div2'));
+  barChart.draw(data, options);
+  var barChart = new google.visualization.BarChart(document.getElementById('chart_div3'));
+  barChart.draw(data, options);
+}

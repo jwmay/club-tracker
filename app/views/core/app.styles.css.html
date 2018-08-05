@@ -2037,7 +2037,7 @@ a {
           box-shadow: none !important; }
 
 /* 2dp elevation modified*/
-.z-depth-1, nav, .card-panel, .card, .table .table-row, .toast, .btn, .btn-large, .btn-small, .btn-floating, .table .table-action-button, .dropdown-content, .collapsible, .sidenav, .stackable, .table {
+.z-depth-1, nav, .card-panel, .card, .table .table-row, .tile-wrapper .tile, .toast, .btn, .btn-large, .btn-small, .btn-floating, .table .table-action-button, .dropdown-content, .collapsible, .sidenav, .stackable, .table {
   -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2); }
 
@@ -3527,7 +3527,7 @@ small {
   border-radius: 2px;
   background-color: #fff; }
 
-.card, .table .table-row {
+.card, .table .table-row, .tile-wrapper .tile {
   position: relative;
   margin: 0.5rem 0 1rem 0;
   background-color: #fff;
@@ -3536,49 +3536,49 @@ small {
   transition: box-shadow .25s;
   transition: box-shadow .25s, -webkit-box-shadow .25s;
   border-radius: 2px; }
-  .card .card-title, .table .table-row .card-title, .card .table .data.data-main, .table .card .data.data-main, .table .table-row .data.data-main {
+  .card .card-title, .table .table-row .card-title, .tile-wrapper .tile .card-title, .card .table .data.data-main, .table .card .data.data-main, .table .table-row .data.data-main, .tile-wrapper .tile .table .data.data-main, .table .tile-wrapper .tile .data.data-main {
     font-size: 24px;
     font-weight: 300; }
-    .card .card-title.activator, .table .table-row .card-title.activator, .card .table .activator.data.data-main, .table .card .activator.data.data-main, .table .table-row .activator.data.data-main {
+    .card .card-title.activator, .table .table-row .card-title.activator, .tile-wrapper .tile .card-title.activator, .card .table .activator.data.data-main, .table .card .activator.data.data-main, .table .table-row .activator.data.data-main, .tile-wrapper .tile .table .activator.data.data-main, .table .tile-wrapper .tile .activator.data.data-main {
       cursor: pointer; }
-  .card.small, .table .small.table-row, .card.medium, .table .medium.table-row, .card.large, .table .large.table-row {
+  .card.small, .table .small.table-row, .tile-wrapper .small.tile, .card.medium, .table .medium.table-row, .tile-wrapper .medium.tile, .card.large, .table .large.table-row, .tile-wrapper .large.tile {
     position: relative; }
-    .card.small .card-image, .table .small.table-row .card-image, .card.medium .card-image, .table .medium.table-row .card-image, .card.large .card-image, .table .large.table-row .card-image {
+    .card.small .card-image, .table .small.table-row .card-image, .tile-wrapper .small.tile .card-image, .card.medium .card-image, .table .medium.table-row .card-image, .tile-wrapper .medium.tile .card-image, .card.large .card-image, .table .large.table-row .card-image, .tile-wrapper .large.tile .card-image {
       max-height: 60%;
       overflow: hidden; }
-    .card.small .card-image + .card-content, .table .small.table-row .card-image + .card-content, .card.medium .card-image + .card-content, .table .medium.table-row .card-image + .card-content, .card.large .card-image + .card-content, .table .large.table-row .card-image + .card-content {
+    .card.small .card-image + .card-content, .table .small.table-row .card-image + .card-content, .tile-wrapper .small.tile .card-image + .card-content, .card.medium .card-image + .card-content, .table .medium.table-row .card-image + .card-content, .tile-wrapper .medium.tile .card-image + .card-content, .card.large .card-image + .card-content, .table .large.table-row .card-image + .card-content, .tile-wrapper .large.tile .card-image + .card-content {
       max-height: 40%; }
-    .card.small .card-content, .table .small.table-row .card-content, .card.medium .card-content, .table .medium.table-row .card-content, .card.large .card-content, .table .large.table-row .card-content {
+    .card.small .card-content, .table .small.table-row .card-content, .tile-wrapper .small.tile .card-content, .card.medium .card-content, .table .medium.table-row .card-content, .tile-wrapper .medium.tile .card-content, .card.large .card-content, .table .large.table-row .card-content, .tile-wrapper .large.tile .card-content {
       max-height: 100%;
       overflow: hidden; }
-    .card.small .card-action, .table .small.table-row .card-action, .card.medium .card-action, .table .medium.table-row .card-action, .card.large .card-action, .table .large.table-row .card-action {
+    .card.small .card-action, .table .small.table-row .card-action, .tile-wrapper .small.tile .card-action, .card.medium .card-action, .table .medium.table-row .card-action, .tile-wrapper .medium.tile .card-action, .card.large .card-action, .table .large.table-row .card-action, .tile-wrapper .large.tile .card-action {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0; }
-  .card.small, .table .small.table-row {
+  .card.small, .table .small.table-row, .tile-wrapper .small.tile {
     height: 300px; }
-  .card.medium, .table .medium.table-row {
+  .card.medium, .table .medium.table-row, .tile-wrapper .medium.tile {
     height: 400px; }
-  .card.large, .table .large.table-row {
+  .card.large, .table .large.table-row, .tile-wrapper .large.tile {
     height: 500px; }
-  .card.horizontal, .table .horizontal.table-row {
+  .card.horizontal, .table .horizontal.table-row, .tile-wrapper .horizontal.tile {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex; }
-    .card.horizontal.small .card-image, .table .horizontal.small.table-row .card-image, .card.horizontal.medium .card-image, .table .horizontal.medium.table-row .card-image, .card.horizontal.large .card-image, .table .horizontal.large.table-row .card-image {
+    .card.horizontal.small .card-image, .table .horizontal.small.table-row .card-image, .tile-wrapper .horizontal.small.tile .card-image, .card.horizontal.medium .card-image, .table .horizontal.medium.table-row .card-image, .tile-wrapper .horizontal.medium.tile .card-image, .card.horizontal.large .card-image, .table .horizontal.large.table-row .card-image, .tile-wrapper .horizontal.large.tile .card-image {
       height: 100%;
       max-height: none;
       overflow: visible; }
-      .card.horizontal.small .card-image img, .table .horizontal.small.table-row .card-image img, .card.horizontal.medium .card-image img, .table .horizontal.medium.table-row .card-image img, .card.horizontal.large .card-image img, .table .horizontal.large.table-row .card-image img {
+      .card.horizontal.small .card-image img, .table .horizontal.small.table-row .card-image img, .tile-wrapper .horizontal.small.tile .card-image img, .card.horizontal.medium .card-image img, .table .horizontal.medium.table-row .card-image img, .tile-wrapper .horizontal.medium.tile .card-image img, .card.horizontal.large .card-image img, .table .horizontal.large.table-row .card-image img, .tile-wrapper .horizontal.large.tile .card-image img {
         height: 100%; }
-    .card.horizontal .card-image, .table .horizontal.table-row .card-image {
+    .card.horizontal .card-image, .table .horizontal.table-row .card-image, .tile-wrapper .horizontal.tile .card-image {
       max-width: 50%; }
-      .card.horizontal .card-image img, .table .horizontal.table-row .card-image img {
+      .card.horizontal .card-image img, .table .horizontal.table-row .card-image img, .tile-wrapper .horizontal.tile .card-image img {
         border-radius: 2px 0 0 2px;
         max-width: 100%;
         width: auto; }
-    .card.horizontal .card-stacked, .table .horizontal.table-row .card-stacked {
+    .card.horizontal .card-stacked, .table .horizontal.table-row .card-stacked, .tile-wrapper .horizontal.tile .card-stacked {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -3590,18 +3590,18 @@ small {
           -ms-flex: 1;
               flex: 1;
       position: relative; }
-      .card.horizontal .card-stacked .card-content, .table .horizontal.table-row .card-stacked .card-content {
+      .card.horizontal .card-stacked .card-content, .table .horizontal.table-row .card-stacked .card-content, .tile-wrapper .horizontal.tile .card-stacked .card-content {
         -webkit-box-flex: 1;
             -ms-flex-positive: 1;
                 flex-grow: 1; }
-  .card.sticky-action .card-action, .table .sticky-action.table-row .card-action {
+  .card.sticky-action .card-action, .table .sticky-action.table-row .card-action, .tile-wrapper .sticky-action.tile .card-action {
     z-index: 2; }
-  .card.sticky-action .card-reveal, .table .sticky-action.table-row .card-reveal {
+  .card.sticky-action .card-reveal, .table .sticky-action.table-row .card-reveal, .tile-wrapper .sticky-action.tile .card-reveal {
     z-index: 1;
     padding-bottom: 64px; }
-  .card .card-image, .table .table-row .card-image {
+  .card .card-image, .table .table-row .card-image, .tile-wrapper .tile .card-image {
     position: relative; }
-    .card .card-image img, .table .table-row .card-image img {
+    .card .card-image img, .table .table-row .card-image img, .tile-wrapper .tile .card-image img {
       display: block;
       border-radius: 2px 2px 0 0;
       position: relative;
@@ -3610,40 +3610,40 @@ small {
       top: 0;
       bottom: 0;
       width: 100%; }
-    .card .card-image .card-title, .table .table-row .card-image .card-title, .card .card-image .table .data.data-main, .table .card .card-image .data.data-main, .table .table-row .card-image .data.data-main {
+    .card .card-image .card-title, .table .table-row .card-image .card-title, .tile-wrapper .tile .card-image .card-title, .card .card-image .table .data.data-main, .table .card .card-image .data.data-main, .table .table-row .card-image .data.data-main, .tile-wrapper .tile .card-image .table .data.data-main, .table .tile-wrapper .tile .card-image .data.data-main {
       color: #fff;
       position: absolute;
       bottom: 0;
       left: 0;
       max-width: 100%;
       padding: 24px; }
-  .card .card-content, .table .table-row .card-content {
+  .card .card-content, .table .table-row .card-content, .tile-wrapper .tile .card-content {
     padding: 24px;
     border-radius: 0 0 2px 2px; }
-    .card .card-content p, .table .table-row .card-content p {
+    .card .card-content p, .table .table-row .card-content p, .tile-wrapper .tile .card-content p {
       margin: 0; }
-    .card .card-content .card-title, .table .table-row .card-content .card-title, .card .card-content .table .data.data-main, .table .card .card-content .data.data-main, .table .table-row .card-content .data.data-main {
+    .card .card-content .card-title, .table .table-row .card-content .card-title, .tile-wrapper .tile .card-content .card-title, .card .card-content .table .data.data-main, .table .card .card-content .data.data-main, .table .table-row .card-content .data.data-main, .tile-wrapper .tile .card-content .table .data.data-main, .table .tile-wrapper .tile .card-content .data.data-main {
       display: block;
       line-height: 32px;
       margin-bottom: 8px; }
-      .card .card-content .card-title i, .table .table-row .card-content .card-title i, .card .card-content .table .data.data-main i, .table .card .card-content .data.data-main i, .table .table-row .card-content .data.data-main i {
+      .card .card-content .card-title i, .table .table-row .card-content .card-title i, .tile-wrapper .tile .card-content .card-title i, .card .card-content .table .data.data-main i, .table .card .card-content .data.data-main i, .table .table-row .card-content .data.data-main i, .tile-wrapper .tile .card-content .table .data.data-main i, .table .tile-wrapper .tile .card-content .data.data-main i {
         line-height: 32px; }
-  .card .card-action, .table .table-row .card-action {
+  .card .card-action, .table .table-row .card-action, .tile-wrapper .tile .card-action {
     background-color: inherit;
     border-top: 1px solid rgba(160, 160, 160, 0.2);
     position: relative;
     padding: 16px 24px; }
-    .card .card-action:last-child, .table .table-row .card-action:last-child {
+    .card .card-action:last-child, .table .table-row .card-action:last-child, .tile-wrapper .tile .card-action:last-child {
       border-radius: 0 0 2px 2px; }
-    .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating), .table .table-row .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating), .table .table-row .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating), .tile-wrapper .tile .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
       color: #ffab40;
       margin-right: 24px;
       -webkit-transition: color .3s ease;
       transition: color .3s ease;
       text-transform: uppercase; }
-      .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover, .table .table-row .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover {
+      .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover, .table .table-row .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover, .tile-wrapper .tile .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover {
         color: #ffd8a6; }
-  .card .card-reveal, .table .table-row .card-reveal {
+  .card .card-reveal, .table .table-row .card-reveal, .tile-wrapper .tile .card-reveal {
     padding: 24px;
     position: absolute;
     background-color: #fff;
@@ -3654,7 +3654,7 @@ small {
     height: 100%;
     z-index: 3;
     display: none; }
-    .card .card-reveal .card-title, .table .table-row .card-reveal .card-title, .card .card-reveal .table .data.data-main, .table .card .card-reveal .data.data-main, .table .table-row .card-reveal .data.data-main {
+    .card .card-reveal .card-title, .table .table-row .card-reveal .card-title, .tile-wrapper .tile .card-reveal .card-title, .card .card-reveal .table .data.data-main, .table .card .card-reveal .data.data-main, .table .table-row .card-reveal .data.data-main, .tile-wrapper .tile .card-reveal .table .data.data-main, .table .tile-wrapper .tile .card-reveal .data.data-main {
       cursor: pointer;
       display: block; }
 
@@ -7008,16 +7008,16 @@ body.app-loading {
   .sidenav-trigger {
     display: none; } }
 
-.stackable .card, .table .card, .table .table-row {
+.stackable .card, .table .card, .table .table-row, .stackable .tile-wrapper .tile, .tile-wrapper .stackable .tile, .table .tile-wrapper .tile, .tile-wrapper .table .tile {
   margin: 0;
   width: 100%;
   -webkit-box-shadow: none;
           box-shadow: none;
   border-radius: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.14); }
-  .stackable .card:last-of-type, .table .card:last-of-type, .table .table-row:last-of-type {
+  .stackable .card:last-of-type, .table .card:last-of-type, .table .table-row:last-of-type, .stackable .tile-wrapper .tile:last-of-type, .tile-wrapper .stackable .tile:last-of-type, .table .tile-wrapper .tile:last-of-type, .tile-wrapper .table .tile:last-of-type {
     border-bottom: none; }
-  .stackable .card .card-content, .table .card .card-content, .table .table-row .card-content {
+  .stackable .card .card-content, .table .card .card-content, .table .table-row .card-content, .stackable .tile-wrapper .tile .card-content, .tile-wrapper .stackable .tile .card-content, .table .tile-wrapper .tile .card-content, .tile-wrapper .table .tile .card-content {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -7026,7 +7026,7 @@ body.app-loading {
         -ms-flex-flow: column nowrap;
             flex-flow: column nowrap; }
     @media only screen and (min-width: 601px) {
-      .stackable .card .card-content, .table .card .card-content, .table .table-row .card-content {
+      .stackable .card .card-content, .table .card .card-content, .table .table-row .card-content, .stackable .tile-wrapper .tile .card-content, .tile-wrapper .stackable .tile .card-content, .table .tile-wrapper .tile .card-content, .tile-wrapper .table .tile .card-content {
         -webkit-box-orient: horizontal;
         -webkit-box-direction: normal;
             -ms-flex-flow: row nowrap;
@@ -7183,6 +7183,79 @@ body.app-loading {
     height: 56px;
     width: 56px; }
 
+.tile-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+  .tile-wrapper .tile {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    padding: 20px;
+    margin: 0 2rem 2rem 0; }
+  .tile-wrapper .tile-full-width {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap; }
+    .tile-wrapper .tile-full-width .tile-section {
+      -ms-flex-preferred-size: 50%;
+          flex-basis: 50%; }
+  .tile-wrapper .tile-title {
+    display: block;
+    width: 100%; }
+  .tile-wrapper .tile-chart {
+    width: 400px;
+    height: 300px; }
+    .tile-wrapper .tile-chart.tile-chart-small {
+      width: 200px;
+      height: 150px; }
+  .tile-wrapper .tile-table {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: column nowrap;
+            flex-flow: column nowrap; }
+    .tile-wrapper .tile-table .tile-table-row {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+          -ms-flex-flow: row nowrap;
+              flex-flow: row nowrap;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      padding: 0.8rem 0; }
+      .tile-wrapper .tile-table .tile-table-row:hover {
+        background-color: rgba(0, 0, 0, 0.05); }
+      .tile-wrapper .tile-table .tile-table-row i {
+        margin-right: 0.8rem; }
+      .tile-wrapper .tile-table .tile-table-row span {
+        font-size: 1.4rem; }
+      .tile-wrapper .tile-table .tile-table-row .tile-table-row-title {
+        font-weight: bold;
+        margin-right: 1rem;
+        width: 150px; }
+    .tile-wrapper .tile-table .tile-table-divider {
+      width: 100%;
+      height: 2px;
+      background-color: rgba(0, 0, 0, 0.14); }
+
 .filter-bar h5 {
   margin-bottom: 0; }
 
@@ -7338,12 +7411,12 @@ form label.error {
   width: 60px;
   text-align: center; }
 
-.message .card, .message .table .table-row, .table .message .table-row {
+.message .card, .message .table .table-row, .table .message .table-row, .message .tile-wrapper .tile, .tile-wrapper .message .tile {
   padding: 0; }
-  .message .card .card-title, .message .table .table-row .card-title, .table .message .table-row .card-title, .message .card .table .data.data-main, .table .message .card .data.data-main, .message .table .table-row .data.data-main, .table .message .table-row .data.data-main {
+  .message .card .card-title, .message .table .table-row .card-title, .table .message .table-row .card-title, .message .tile-wrapper .tile .card-title, .tile-wrapper .message .tile .card-title, .message .card .table .data.data-main, .table .message .card .data.data-main, .message .table .table-row .data.data-main, .table .message .table-row .data.data-main, .message .tile-wrapper .tile .table .data.data-main, .table .message .tile-wrapper .tile .data.data-main, .tile-wrapper .message .tile .table .data.data-main, .table .tile-wrapper .message .tile .data.data-main {
     padding: 24px 18px;
     border-left: 5px solid #26AB45; }
-  .message .card .card-content, .message .table .table-row .card-content, .table .message .table-row .card-content {
+  .message .card .card-content, .message .table .table-row .card-content, .table .message .table-row .card-content, .message .tile-wrapper .tile .card-content, .tile-wrapper .message .tile .card-content {
     padding: 24px 18px 24px 23px; }
 
 .message.message-error .card-title, .message.message-error .table .data.data-main, .table .message.message-error .data.data-main {
