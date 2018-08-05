@@ -67,11 +67,12 @@ ManageShirts.prototype.getMain = function() {
       rosterId: shirt[0],
       lastName: shirt[1],
       firstName: shirt[2],
+      membershipFeePaid: shirt[8],
       shirtSize: shirt[13],
       shirtReceived: shirt[14]
     });
   }
-  content = '<div class="table shirts">';
+  content = '<div class="table accounts">';
   for (var i = 0; i < members.length; i++) {
     var member = members[i];
     content += this.getTableRow_(member);
@@ -168,6 +169,12 @@ ManageShirts.prototype.getTableRow_ = function(member) {
       '<div class="data">' +
         '<span class="input-field">' +
           this._form.insertSelector(shirtReceivedSelector) +
+        '</span>' +
+      '</div>' +
+      '<div class="data">' +
+        '<span class="data-title">Membership Fee Paid</span>' +
+        '<span class="data-value data-dot data-' + getYesNoColor(member.membershipFeePaid) + '">' +
+          member.membershipFeePaid +
         '</span>' +
       '</div>' +
       '<input type="hidden" name="rosterId" value="' + member.rosterId + '">' +
