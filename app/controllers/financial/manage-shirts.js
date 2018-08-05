@@ -18,12 +18,12 @@
 /**
  * Function to call client-side to save the fundraiser form data.
  * 
- * @param {Object} accounts The form values containing the user input.
+ * @param {Object} shirts The form values containing the user input.
  * @returns {DisplayObject[]} The app page to display.
  */
- function saveFundraiser(accounts) {
+ function saveShirts(shirts) {
   var fundraiser = new ManageShirts();
-  return fundraiser.saveFundraiser(accounts);
+  return fundraiser.saveShirts(shirts);
 }
 
 
@@ -37,6 +37,7 @@
  */
 var ManageShirts = function() {
   this._db = new Database();
+  this._form = new FormBuilder();
   this._pageTitle = 'Manage Shirts';
 };
 
@@ -58,22 +59,22 @@ ManageShirts.prototype.getHeader = function() {
  */
 ManageShirts.prototype.getMain = function() {
   var members = [],
-      accounts = this.getAccounts_(),
+      shirts = this.getShirts_(),
       content = '';
-  while (accounts.hasNext()) {
-    var account = accounts.getNext();
+  while (shirts.hasNext()) {
+    var shirt = shirts.getNext();
     members.push({
-      rosterId: account[0],
-      lastName: account[1],
-      firstName: account[2],
-      fundraiserAmountCheckedOut: account[9],
-      fundraiserAmountCheckedIn: account[10]
+      rosterId: shirt[0],
+      lastName: shirt[1],
+      firstName: shirt[2],
+      shirtSize: shirt[13],
+      shirtReceived: shirt[14]
     });
   }
-  content = '<div class="table fundraiser">';
+  content = '<div class="table shirts">';
   for (var i = 0; i < members.length; i++) {
-    var account = members[i];
-    content += this.getTableRow_(account);
+    var member = members[i];
+    content += this.getTableRow_(member);
   }
   content += '</div>';
   return content;
@@ -88,8 +89,8 @@ ManageShirts.prototype.getMain = function() {
 ManageShirts.prototype.getFooter = function() {
   return '' +
     '<button id="submit" class="btn btn-large waves-effect waves-light" ' +
-        'data-page="runFundraiser">' +
-      'Submit' +
+        'data-page="manageShirts">' +
+      'Save' +
     '</button>';
 }
 
@@ -98,28 +99,28 @@ ManageShirts.prototype.getFooter = function() {
  * Inserts the given form values into the database and returns an array of
  * DisplayObjects containing the components of the message page to display.
  * 
- * @param {Object} accounts The form values containing the user input.
+ * @param {Object} shirts The form values containing the user input.
  * @returns {DisplayObject[]} The app page to display.
  */
-ManageShirts.prototype.saveFundraiser = function(accounts) {
+ManageShirts.prototype.saveShirts = function(shirts) {
   try {
     var data = {
-      rosterIds: accounts.rosterIds,
+      rosterIds: shirts.rosterIds,
       fields: [
         {
-          fieldIndex: this._db.sections.financial.fields.fundraiserAmountCheckedOut,
-          data: accounts.fundraiserAmountsCheckedOut
+          fieldIndex: this._db.sections.financial.fields.shirtSize,
+          data: shirts.shirtSizes
         },{
-          fieldIndex: this._db.sections.financial.fields.fundraiserAmountCheckedIn,
-          data: accounts.fundraiserAmountsCheckedIn
+          fieldIndex: this._db.sections.financial.fields.shirtReceived,
+          data: shirts.shirtsReceived
         }
       ]
     };
     this._db.setFieldData(data);
-    return getSuccessPage(this._pageTitle, 'Fundraiser saved',
+    return getSuccessPage(this._pageTitle, 'Shirt information saved',
       this.getSuccess_());
   } catch(error) {
-    return getErrorPage(this._pageTitle, 'Error saving fundraiser', error);
+    return getErrorPage(this._pageTitle, 'Error saving shirt information', error);
   }
 }
 
@@ -128,47 +129,55 @@ ManageShirts.prototype.saveFundraiser = function(accounts) {
  * Returns the HTML content for displaying a card for the given member.
  * 
  * @private
- * @param {Object} account The account information.
- * @returns {String} The member account card.
+ * @param {Object} member The member information.
+ * @returns {String} The table row for the member.
  */
-ManageShirts.prototype.getTableRow_ = function(account) {
-  var checkedOutName = 'checkedOut-' + account.rosterId,
-      checkedInName = 'checkedIn-' + account.rosterId;
+ManageShirts.prototype.getTableRow_ = function(member) {
+  var shirtSizeSelector = {
+    title: 'Shirt Size',
+    name: 'shirtSize-' + member.rosterId,
+    selected: member.shirtSize,
+    labels: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+    values: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+    required: true
+  };
+
+  var shirtReceivedSelector = {
+    title: 'Shirt Received',
+    name: 'shirtReceived-' + member.rosterId,
+    selected: member.shirtReceived,
+    labels: ['yes', 'no'],
+    values: ['yes', 'no'],
+    required: true
+  };
+  
   return '' +
     '<div class="table-row">' +
       '<div class="data data-main">' +
-        account.lastName + ', ' + account.firstName +
+        member.lastName + ', ' + member.firstName +
       '</div>' +
       '<div class="data">' +
-        '<span class="data-title">Amount Checked Out</span>' +
-        '<span>' +
-          '<input type="number" name="' + checkedOutName + '" min="0" value="' +
-              account.fundraiserAmountCheckedOut + '">' +
-          '<div class="incrementer">' +
-            '<span class="increment" data-amount="60">$60</span>' +
-            '<span class="increment" data-amount="30">$30</span>' +
-          '</div>' +
+        '<span class="input-field">' +
+          this._form.insertSelector(shirtSizeSelector) +
         '</span>' +
       '</div>' +
       '<div class="data">' +
-        '<span class="data-title">Amount Checked In</span>' +
-        '<span>' +
-          '<input type="number" name="' + checkedInName + '" min="0" value="' +
-              account.fundraiserAmountCheckedIn + '">' +
+        '<span class="input-field">' +
+          this._form.insertSelector(shirtReceivedSelector) +
         '</span>' +
       '</div>' +
-      '<input type="hidden" name="rosterId" value="' + account.rosterId + '">' +
+      '<input type="hidden" name="rosterId" value="' + member.rosterId + '">' +
     '</div>';
 }
 
 
 /**
- * Returns the account data sorted by last name and filtered for active members.
+ * Returns the shirt data sorted by last name and filtered for active members.
  * 
  * @private
- * @returns {DataSet} The account data, filtered and sorted by last name.
+ * @returns {DataSet} The shirt data, filtered and sorted by last name.
  */
-ManageShirts.prototype.getAccounts_ = function() {
+ManageShirts.prototype.getShirts_ = function() {
   var accountData = this._db.getDataBySection('financial');
   return accountData
     .filterByField(3, 'active')
@@ -189,9 +198,9 @@ ManageShirts.prototype.getSuccess_ = function() {
         '<i class="fas fa-fw fa-3x fa-eye"></i>' +
         '<h5>View Accounts</h5>' +
       '</div>' +
-      '<div class="panel panel-2" data-page="runFundraiser">' +
-        '<i class="fas fa-fw fa-3x fa-hand-holding-usd"></i>' +
-        '<h5>Run Fundraiser</h5>' +
+      '<div class="panel panel-2" data-page="manageShirts">' +
+        '<i class="fas fa-fw fa-3x fa-tshirt"></i>' +
+        '<h5>Manage Shirts</h5>' +
       '</div>' +
     '</div>';
 }

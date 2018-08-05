@@ -116,6 +116,9 @@ function submit() {
     case 'editAccount':
       submitAccount_();
       break;
+    case 'manageShirts':
+      submitShirts_();
+      break;
     case 'runFundraiser':
       submitFundraiser_();
       break;
@@ -211,4 +214,23 @@ function submitMember_() {
   google.script.run
     .withSuccessHandler(updateDisplay)
     .saveMember(member);
+}
+
+
+/**
+ * Gathers the form data and runs server-side functions to write member data in
+ * the database spreadsheet for the 'Manage Shirts' page.
+ * 
+ * @private
+ */
+function submitShirts_() {
+  var form = new FormHandler();
+  var shirts = {
+    rosterIds: form.getValues('input[name="rosterId"]'),
+    shirtSizes: form.getValues('input[name^="shirtSize-"]:checked'),
+    shirtsReceived: form.getValues('input[name^="shirtReceived-"]:checked'),
+  };
+  google.script.run
+    .withSuccessHandler(updateDisplay)
+    .saveShirts(shirts);
 }
