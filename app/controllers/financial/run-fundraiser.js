@@ -70,12 +70,16 @@ RunFundraiser.prototype.getMain = function() {
       fundraiserAmountCheckedIn: account[10]
     });
   }
-  content = '<div class="table fundraiser">';
-  for (var i = 0; i < members.length; i++) {
-    var account = members[i];
-    content += this.getTableRow_(account);
+  if (members.length > 0) {
+    content = '<div class="table fundraiser">';
+    for (var i = 0; i < members.length; i++) {
+      var account = members[i];
+      content += this.getTableRow_(account);
+    }
+    content += '</div>';
+  } else {
+    content += '<div class="no-results">No results found.</div>';
   }
-  content += '</div>';
   return content;
 }
 

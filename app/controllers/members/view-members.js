@@ -119,7 +119,7 @@ ViewMembers.prototype.getMain = function() {
     }
     content += '</div>';
   } else {
-  content += '<div class="no-results">No results found.</div>';
+    content += '<div class="no-results">No results found.</div>';
   }
   return content;
 }

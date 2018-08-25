@@ -64,12 +64,16 @@ ViewAccounts.prototype.getMain = function() {
       finesPaid: member[12]
     });
   }
-  content += '<div class="table accounts">';
-  for (var i = 0; i < members.length; i++) {
-    var member = members[i];
-    content += this.getTableRow_(member);
+  if (members.length > 0) {
+    content += '<div class="table accounts">';
+    for (var i = 0; i < members.length; i++) {
+      var member = members[i];
+      content += this.getTableRow_(member);
+    }
+    content += '</div>';
+  } else {
+    content += '<div class="no-results">No results found.</div>';
   }
-  content += '</div>';
   return content;
 }
 

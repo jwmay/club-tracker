@@ -62,12 +62,16 @@ ViewAttendance.prototype.getMain = function() {
       fields: fields.slice(9)
     });
   }
-  content += '<div class="table">';
-  for (var i = 0; i < members.length; i++) {
-    var member = members[i];
-    content += this.getTableRow_(member);
+  if (members.length > 0) {
+    content += '<div class="table">';
+    for (var i = 0; i < members.length; i++) {
+      var member = members[i];
+      content += this.getTableRow_(member);
+    }
+    content += '</div>';
+  } else {
+    content += '<div class="no-results">No results found.</div>';
   }
-  content += '</div>';
   return content;
 }
 

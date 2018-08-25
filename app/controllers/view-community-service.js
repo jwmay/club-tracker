@@ -60,12 +60,16 @@ ViewCommunityService.prototype.getMain = function() {
       q4Hours: member[8]
     });
   }
-  content += '<div class="table">';
-  for (var i = 0; i < members.length; i++) {
-    var member = members[i];
-    content += this.getTableRow_(member);
+  if (members.length > 0) {
+    content += '<div class="table">';
+    for (var i = 0; i < members.length; i++) {
+      var member = members[i];
+      content += this.getTableRow_(member);
+    }
+    content += '</div>';
+  } else {
+    content += '<div class="no-results">No results found.</div>';
   }
-  content += '</div>';
   return content;
 }
 
