@@ -158,8 +158,12 @@ Database.prototype.getNextRecordIndex = function() {
  * @returns {Integer} The roster id of the next empty record.
  */
 Database.prototype.getNextRosterId = function() {
-  var lastRosterId = this.data.slice(-1)[0][0];
-  return (lastRosterId + 1);
+  if (this.data.length > 0) {
+    var lastRosterId = this.data.slice(-1)[0][0];
+    return (lastRosterId + 1);
+  } else {
+    return Configuration.startingRosterId;
+  }
 }
 
 

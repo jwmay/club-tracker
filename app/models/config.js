@@ -23,6 +23,11 @@ var Configuration = {
    * The name of the sheet containing the database.
    */
   databaseSheetName: 'Member Tracker',
+
+  /**
+   * The starting roster id number.
+   */
+  startingRosterId: 1001,
   
   /**
    * An object containing the row positions for top rows of the database sheet.
