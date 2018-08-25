@@ -211,10 +211,20 @@ AddMember.prototype.getFooter = function() {
  */
 AddMember.prototype.saveMember = function(member) {
   try {
+    // Adding a new member
     if (member.rosterId === '') {
+      // Set default values for other fields
+      member.membershipFeePaid = 'no';
+      member.fundraiserAmountCheckedOut = 0;
+      member.fundraiserAmountCheckedIn = 0;
+      member.finesCharged = 0;
+      member.finesPaid = 0;
+      member.shirtReceived = 'no';
+
       this._db.setRecord(member);
       return getSuccessPage(this.getPageTitle_(), 'Member added',
           this.getSuccess_());
+    // Updating an existing member
     } else {
       this._mode = 'edit';
       this._db.updateRecord(member);
