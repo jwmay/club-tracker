@@ -132,3 +132,18 @@ DataSet.prototype.sortByField = function(field, reverse) {
   if (reverse === true) this._data.reverse();
   return this;
 }
+
+
+/**
+ * Returns the sum of the data in the given field.
+ * 
+ * @param {Integer} field The field index to sum.
+ * @returns {Number} The sum of the given field.
+ */
+DataSet.prototype.sumByField = function(field) {
+  var sum = 0;
+  for (var i = 0; i < this._data.length; i++) {
+    sum += this._data[i][field];
+  }
+  return sum;
+}
