@@ -257,9 +257,14 @@ function showCharts_(charts) {
     for (var chartName in charts) {
       var chart = charts[chartName],
           data = google.visualization.arrayToDataTable(chart.data),
-          options = {'title': chart.title},
-          chart = getChartByType_(chart.type, chart.target);
-      chart.draw(data, options);
+          options = {'title': chart.title};
+      
+      if (chart.hasOwnProperty('legend')) {
+        options['legend'] = chart.legend;
+      }
+      
+      var chartObject = getChartByType_(chart.type, chart.target);
+      chartObject.draw(data, options);
     }
   } catch(error) {
     // *** HACK *** chart scripts currently run on all page views, and throw an
@@ -285,6 +290,6 @@ function getChartByType_(type, target) {
     case 'pieChart':
       return new google.visualization.PieChart(element);
     case 'barChart':
-      return new google.visualization.BarChart(element);
+      return new google.charts.Bar(element);
   }
 }
