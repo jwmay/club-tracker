@@ -54,6 +54,26 @@ DataSet.prototype.getData = function() {
 
 
 /**
+ * Returns the values for the given field as an array.
+ * 
+ * @param {Number} field The field whose values will be returned.
+ * @returns {Array} The values for the given field.
+ */
+DataSet.prototype.getDataByField = function(field) {
+  var data = [];
+  for (var i = 0; i < this._data.length; i++) {
+    var row = this._data[i];
+    for (var j = 0; j < row.length; j++) {
+      if (j === field) {
+        data.push(row[j]);
+      }
+    }
+  }
+  return data;
+}
+
+
+/**
  * Returns the field names represented by the DataSet object.
  * 
  * @returns {Array} The field names.
