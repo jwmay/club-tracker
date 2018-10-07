@@ -122,6 +122,26 @@ function getPercentString(percent) {
 
 
 /**
+ * Returns an HTML-formatted string of table rows containing the data in the
+ * given array.
+ * 
+ * @param {Array} data The data to format as table rows.
+ * @returns {String} The data as an HTML-formatted string of table rows.
+ */
+function getRowsFromData(data) {
+  var rows = '';
+  for (var i = 0; i < data.length; i++) {
+    var row = '' +
+      '<div class="tile-table-row">' +
+        data[i] +
+      '</div>';
+    rows += row;
+  }
+  return rows;
+}
+
+
+/**
  * Returns the color name for the given yes or no value.
  * 
  * @param {String} value The input value as yes or no.
