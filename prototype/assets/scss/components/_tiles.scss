@@ -50,14 +50,14 @@
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
-      padding: 0.8rem 0;
+      padding: 0.8rem;
 
       &:hover {
         background-color: $gray-color;
       }
 
       i {
-        margin-right: 0.8rem;
+        margin-right: 1.8rem;
       }
 
       span {
@@ -67,7 +67,7 @@
       .tile-table-row-title {
         font-weight: bold;
         margin-right: 1rem;
-        width: 150px;
+        width: 180px;
       }
     }
 
