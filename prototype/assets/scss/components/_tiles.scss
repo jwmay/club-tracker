@@ -46,6 +46,11 @@
     display: flex;
     flex-flow: column nowrap;
 
+    &.tile-table-scroll {
+      max-height: 200px;
+      overflow-y: scroll;
+    }
+
     .tile-table-row {
       display: flex;
       flex-flow: row nowrap;

@@ -54,6 +54,11 @@ Dashboard.prototype.getHeader = function() {
  * @returns {String} The main content of the page.
  */
 Dashboard.prototype.getMain = function() {
+  var unpaidMembersFirstName = this._counts.financial.unpaidMembersFirstName,
+      unpaidMembersLastName = this._counts.financial.unpaidMembersLastName,
+      unpaidFeesMembers = unpaidMembersFirstName.map(function(e, i) {
+        return (e + ' ' + unpaidMembersLastName[i]);
+      });
   return '' +
     // Member Information
       '<div class="tile-wrapper">' +
@@ -156,6 +161,12 @@ Dashboard.prototype.getMain = function() {
                 '<span class="tile-table-row-title">Fees Paid</span>' +
                 '<span>' + Math.round(this._counts.financial.paidFees / this._counts.members.total * 100) + '%</span>' +
               '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="tile-section">' +
+            '<h6>Unpaid Fees</h6>' +
+            '<div class="tile-table tile-table-scroll">' +
+              getRowsFromData(unpaidFeesMembers) +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -345,15 +356,21 @@ Dashboard.prototype.getCharts = function() {
  */
 Dashboard.prototype.getCounts_ = function() {
   var memberInformation = this._db.getDataBySection('memberInformation')
-      .filterByField(4, 'active');
-  var service = this._db.getDataBySection('communityService')
-      .filterByField(3, 'active');
-  var financial = this._db.getDataBySection('financial')
-      .filterByField(3, 'active');
+          .filterByField(4, 'active'),
+      service = this._db.getDataBySection('communityService')
+          .filterByField(3, 'active'),
+      financial = this._db.getDataBySection('financial')
+          .filterByField(3, 'active'),
+      unpaidFees = this._db.getDataBySection('financial')
+          .filterByField(3, 'active')
+          .filterByField(8, 'no')
+          .sortByField(1);
   return {
     financial: {
       paidFees: financial.countByField(8, 'yes'),
       unpaidFees: financial.countByField(8, 'no'),
+      unpaidMembersLastName: unpaidFees.getDataByField(1),
+      unpaidMembersFirstName: unpaidFees.getDataByField(2),
       checkedOut: financial.sumByField(9),
       checkedIn: financial.sumByField(10),
     },
