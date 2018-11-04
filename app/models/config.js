@@ -38,4 +38,9 @@ var Configuration = {
     fieldMeta: 3,
     dataStart: 4,
   },
+
+  /**
+   * The name of the sheet containing the settings.
+   */
+  settingsSheetName: 'Settings - DO NOT EDIT OR DELETE THIS SHEET',
 };

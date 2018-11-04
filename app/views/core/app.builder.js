@@ -60,6 +60,9 @@ function getAppPage(page, args) {
     case 'runFundraiser':
       controller = new RunFundraiser();
       break;
+    case 'settings':
+      controller = new ViewSettings();
+      break;
     case 'takeAttendance':
       controller = new TakeAttendance();
       break;
