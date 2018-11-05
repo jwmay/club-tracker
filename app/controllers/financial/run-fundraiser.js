@@ -150,6 +150,7 @@ RunFundraiser.prototype.getTableRow_ = function(account) {
       '<div class="data">' +
         '<span class="data-title">Amount Checked Out</span>' +
         '<span>' +
+          '<i class="fas fa-dollar-sign"></i>' +
           '<input type="number" name="' + checkedOutName + '" min="0" value="' +
               account.fundraiserAmountCheckedOut + '">' +
           '<div class="incrementer">' +
@@ -161,8 +162,13 @@ RunFundraiser.prototype.getTableRow_ = function(account) {
       '<div class="data">' +
         '<span class="data-title">Amount Checked In</span>' +
         '<span>' +
+          '<i class="fas fa-dollar-sign"></i>' +
           '<input type="number" name="' + checkedInName + '" min="0" value="' +
               account.fundraiserAmountCheckedIn + '">' +
+          '<div class="incrementer">' +
+            '<span class="increment" data-amount="60">$60</span>' +
+            '<span class="increment" data-amount="30">$30</span>' +
+          '</div>' +
         '</span>' +
       '</div>' +
       '<input type="hidden" name="rosterId" value="' + account.rosterId + '">' +
