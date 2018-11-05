@@ -7127,6 +7127,25 @@ form label.error {
 .accounts .selector label span.selector-label {
   font-size: 12px; }
 
+.account input[type="number"] {
+  width: 90%;
+  padding-left: 10px; }
+  @media only screen and (min-width: 601px) {
+    .account input[type="number"] {
+      width: 70%; } }
+  @media only screen and (min-width: 993px) {
+    .account input[type="number"] {
+      width: 50%; } }
+
+.account .select-wrapper {
+  width: 96%; }
+  @media only screen and (min-width: 601px) {
+    .account .select-wrapper {
+      width: 76%; } }
+  @media only screen and (min-width: 993px) {
+    .account .select-wrapper {
+      width: 56%; } }
+
 .attendance .card-content {
   align-items: center; }
   .attendance .card-content .card-title, .attendance .card-content .table .data.data-main, .table .attendance .card-content .data.data-main, .attendance .card-content div {
@@ -7153,9 +7172,11 @@ form label.error {
       .attendance .card-content .input-field {
         width: 30%; } }
 
-.fundraiser .data input {
-  width: 60px;
-  text-align: center; }
+.fundraiser .data {
+  margin: 0 30px; }
+  .fundraiser .data input {
+    width: 60px;
+    text-align: center; }
 
 .message .card, .message .table .table-row, .table .message .table-row, .message .tile-wrapper .tile, .tile-wrapper .message .tile {
   padding: 0; }

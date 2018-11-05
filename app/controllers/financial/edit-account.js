@@ -101,7 +101,7 @@ EditAccount.prototype.getMain = function() {
   };
 
   return '' +
-    '<div class="row">' +
+    '<div class="row account">' +
       '<div class="col s12 m10 l8">' +
         '<div class="card">' +
             '<div class="card-content">' +
@@ -110,26 +110,30 @@ EditAccount.prototype.getMain = function() {
                 '<h5>' + member.firstName + ' ' + member.lastName + '</h5>' +
               '</div>' +
               '<div class="input-field col s12 m6">' +
-                '<input type="text" id="fundraiserAmountCheckedOut" name="fundraiserAmountCheckedOut" ' +
-                    'class="validate" value="' + member.fundraiserAmountCheckedOut + '" required>' +
+                '<i class="fas fa-dollar-sign"></i>' +
+                '<input type="number" id="fundraiserAmountCheckedOut" name="fundraiserAmountCheckedOut" ' +
+                    'class="validate" min="0" value="' + member.fundraiserAmountCheckedOut + '" required>' +
                 '<label for="fundraiserAmountCheckedOut">Fundraiser Amount Checked Out</label>' +
               '</div>' +
               '<div class="input-field col s12 m6">' +
-                '<input type="text" id="fundraiserAmountCheckedIn" name="fundraiserAmountCheckedIn" class="validate" ' +
-                    'value="' + member.fundraiserAmountCheckedIn + '" required>' +
+                '<i class="fas fa-dollar-sign"></i>' +
+                '<input type="number" id="fundraiserAmountCheckedIn" name="fundraiserAmountCheckedIn" ' +
+                    'class="validate" min="0" value="' + member.fundraiserAmountCheckedIn + '" required>' +
                 '<label for="fundraiserAmountCheckedIn">Fundraiser Amount Checked In</label>' +
               '</div>' +
               '<div class="input-field col s12 m6">' +
+                '<i class="fas fa-dollar-sign"></i>' +
                 '<input type="number" id="finesCharged" name="finesCharged" ' +
                     'class="validate" min="0" value="' + member.finesCharged + '" required>' +
                 '<label for="finesCharged">Fines Charged</label>' +
               '</div>' +
               '<div class="input-field col s12 m6">' +
+                '<i class="fas fa-dollar-sign"></i>' +
                 '<input type="number" id="finesPaid" name="finesPaid" ' +
                     'class="validate" min="0" value="' + member.finesPaid + '" required>' +
                 '<label for="finesPaid">Fines Paid</label>' +
               '</div>' +
-              '<div class="input-field col s6 m4">' +
+              '<div class="input-field col s12 m6">' +
                 this._form.insertSelect(membershipFeePaidSelect) +
               '</div>' +
               '<input type="hidden" id="rosterId" value="' + member.rosterId + '">' +

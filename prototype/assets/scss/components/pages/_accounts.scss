@@ -20,4 +20,29 @@
   }
 }
 
+.account {
+  input[type="number"] {
+    width: 90%;
+    padding-left: 10px;
 
+    @media #{$medium-and-up} {
+      width: 70%;
+    }
+
+    @media #{$large-and-up} {
+      width: 50%;
+    }
+  }
+
+  .select-wrapper {
+    width: 96%;
+    
+    @media #{$medium-and-up} {
+      width: 76%;
+    }
+
+    @media #{$large-and-up} {
+      width: 56%;
+    }
+  }
+}
