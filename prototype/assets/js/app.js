@@ -40,6 +40,16 @@ $(document).ready(function() {
         inputValue = parseInt(input.val());
     input.val(inputValue + amount);
   });
+
+  // Settings hover effect
+  $('.setting').hover(function() {
+    $(this).toggleClass('hovered');
+  });
+
+  // Settings click effect
+  $('.setting').click(function() {
+    $(this).find('input').focus();
+  });
 });
 
 

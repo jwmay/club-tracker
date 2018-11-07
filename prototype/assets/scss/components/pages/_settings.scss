@@ -1,0 +1,53 @@
+.settings {
+  width: 100%;
+
+  @media #{$large-and-up} {
+    width: 60%;
+  }
+
+  .setting-group {
+    @extend .card;
+    padding: 20px;
+    margin-bottom: 40px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .setting-group-header {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .setting {
+    display: flex;
+    align-items: baseline;
+    padding: 10px;
+    border-left: 3px solid $white;
+
+    &:hover {
+      border-left: 3px solid $dark-gray-color;
+    }
+  }
+
+  .setting-label {
+    margin-right: 100px;
+    width: 60%;
+  }
+
+  .setting-detail {
+    display: block;
+    color: $white;
+    font-size: 12px;
+    font-style: italic;
+  }
+
+  .hovered .setting-detail {
+    color: #818181;
+  }
+
+  .setting-input {
+    flex-grow: 1;
+  }
+}

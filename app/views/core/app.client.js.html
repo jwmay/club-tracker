@@ -77,6 +77,19 @@ $(document).ready(function() {
       }).removeClass('valid invalid');
     }
   });
+
+  // Handle the hover effect on the dynamically-generated Settings page by
+  // revealing help text when the user hovers over a single setting.
+  $(document).on('mouseenter mouseleave', '.setting', function() {
+    $(this).toggleClass('hovered');
+  });
+  
+  // Handle the click effect on the dynamically-generated Settings page by
+  // giving focus to the input element when the user clicks any part of a
+  // settin.
+  $(document).on('click', '.setting', function() {
+    $(this).find('input').focus();
+  });
 });
 
 
@@ -121,6 +134,9 @@ function submit() {
       break;
     case 'runFundraiser':
       submitFundraiser_();
+      break;
+    case 'saveSettings':
+      submitSettings_();
       break;
     case 'takeAttendance':
       submitAttendance_();
@@ -225,6 +241,24 @@ function submitMember_() {
   google.script.run
     .withSuccessHandler(updateDisplay)
     .saveMember(member);
+}
+
+
+/**
+ * Gathers the form data and runs server-side functions to store settings values
+ * in the document property store for the 'Settings' page.
+ * 
+ * @private
+ */
+function submitSettings_() {
+  var form = new FormHandler();
+  var settings = {
+    incrementer1: form.getValue('#incrementer1'),
+    incrementer2: form.getValue('#incrementer2'),
+  };
+  google.script.run
+    .withSuccessHandler(updateDisplay)
+    .saveSettings(settings);
 }
 
 

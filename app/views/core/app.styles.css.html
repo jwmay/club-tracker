@@ -2027,7 +2027,7 @@ a {
   box-shadow: none !important; }
 
 /* 2dp elevation modified*/
-.z-depth-1, nav, .card-panel, .card, .table .table-row, .tile-wrapper .tile, .toast, .btn, .btn-large, .btn-small, .btn-floating, .table .table-action-button, .dropdown-content, .collapsible, .sidenav, .stackable, .table {
+.z-depth-1, nav, .card-panel, .card, .table .table-row, .tile-wrapper .tile, .settings .setting-group, .toast, .btn, .btn-large, .btn-small, .btn-floating, .table .table-action-button, .dropdown-content, .collapsible, .sidenav, .stackable, .table {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2); }
 
 .z-depth-1-half, .btn:hover, .btn-large:hover, .btn-small:hover, .btn-floating:hover, .table .table-action-button:hover {
@@ -3487,67 +3487,67 @@ small {
   border-radius: 2px;
   background-color: #fff; }
 
-.card, .table .table-row, .tile-wrapper .tile {
+.card, .table .table-row, .tile-wrapper .tile, .settings .setting-group {
   position: relative;
   margin: 0.5rem 0 1rem 0;
   background-color: #fff;
   transition: box-shadow .25s;
   border-radius: 2px; }
-  .card .card-title, .table .table-row .card-title, .tile-wrapper .tile .card-title, .card .table .data.data-main, .table .card .data.data-main, .table .table-row .data.data-main, .tile-wrapper .tile .table .data.data-main, .table .tile-wrapper .tile .data.data-main {
+  .card .card-title, .table .table-row .card-title, .tile-wrapper .tile .card-title, .settings .setting-group .card-title, .card .table .data.data-main, .table .card .data.data-main, .table .table-row .data.data-main, .tile-wrapper .tile .table .data.data-main, .table .tile-wrapper .tile .data.data-main, .settings .setting-group .table .data.data-main, .table .settings .setting-group .data.data-main {
     font-size: 24px;
     font-weight: 300; }
-    .card .card-title.activator, .table .table-row .card-title.activator, .tile-wrapper .tile .card-title.activator, .card .table .activator.data.data-main, .table .card .activator.data.data-main, .table .table-row .activator.data.data-main, .tile-wrapper .tile .table .activator.data.data-main, .table .tile-wrapper .tile .activator.data.data-main {
+    .card .card-title.activator, .table .table-row .card-title.activator, .tile-wrapper .tile .card-title.activator, .settings .setting-group .card-title.activator, .card .table .activator.data.data-main, .table .card .activator.data.data-main, .table .table-row .activator.data.data-main, .tile-wrapper .tile .table .activator.data.data-main, .table .tile-wrapper .tile .activator.data.data-main, .settings .setting-group .table .activator.data.data-main, .table .settings .setting-group .activator.data.data-main {
       cursor: pointer; }
-  .card.small, .table .small.table-row, .tile-wrapper .small.tile, .card.medium, .table .medium.table-row, .tile-wrapper .medium.tile, .card.large, .table .large.table-row, .tile-wrapper .large.tile {
+  .card.small, .table .small.table-row, .tile-wrapper .small.tile, .settings .small.setting-group, .card.medium, .table .medium.table-row, .tile-wrapper .medium.tile, .settings .medium.setting-group, .card.large, .table .large.table-row, .tile-wrapper .large.tile, .settings .large.setting-group {
     position: relative; }
-    .card.small .card-image, .table .small.table-row .card-image, .tile-wrapper .small.tile .card-image, .card.medium .card-image, .table .medium.table-row .card-image, .tile-wrapper .medium.tile .card-image, .card.large .card-image, .table .large.table-row .card-image, .tile-wrapper .large.tile .card-image {
+    .card.small .card-image, .table .small.table-row .card-image, .tile-wrapper .small.tile .card-image, .settings .small.setting-group .card-image, .card.medium .card-image, .table .medium.table-row .card-image, .tile-wrapper .medium.tile .card-image, .settings .medium.setting-group .card-image, .card.large .card-image, .table .large.table-row .card-image, .tile-wrapper .large.tile .card-image, .settings .large.setting-group .card-image {
       max-height: 60%;
       overflow: hidden; }
-    .card.small .card-image + .card-content, .table .small.table-row .card-image + .card-content, .tile-wrapper .small.tile .card-image + .card-content, .card.medium .card-image + .card-content, .table .medium.table-row .card-image + .card-content, .tile-wrapper .medium.tile .card-image + .card-content, .card.large .card-image + .card-content, .table .large.table-row .card-image + .card-content, .tile-wrapper .large.tile .card-image + .card-content {
+    .card.small .card-image + .card-content, .table .small.table-row .card-image + .card-content, .tile-wrapper .small.tile .card-image + .card-content, .settings .small.setting-group .card-image + .card-content, .card.medium .card-image + .card-content, .table .medium.table-row .card-image + .card-content, .tile-wrapper .medium.tile .card-image + .card-content, .settings .medium.setting-group .card-image + .card-content, .card.large .card-image + .card-content, .table .large.table-row .card-image + .card-content, .tile-wrapper .large.tile .card-image + .card-content, .settings .large.setting-group .card-image + .card-content {
       max-height: 40%; }
-    .card.small .card-content, .table .small.table-row .card-content, .tile-wrapper .small.tile .card-content, .card.medium .card-content, .table .medium.table-row .card-content, .tile-wrapper .medium.tile .card-content, .card.large .card-content, .table .large.table-row .card-content, .tile-wrapper .large.tile .card-content {
+    .card.small .card-content, .table .small.table-row .card-content, .tile-wrapper .small.tile .card-content, .settings .small.setting-group .card-content, .card.medium .card-content, .table .medium.table-row .card-content, .tile-wrapper .medium.tile .card-content, .settings .medium.setting-group .card-content, .card.large .card-content, .table .large.table-row .card-content, .tile-wrapper .large.tile .card-content, .settings .large.setting-group .card-content {
       max-height: 100%;
       overflow: hidden; }
-    .card.small .card-action, .table .small.table-row .card-action, .tile-wrapper .small.tile .card-action, .card.medium .card-action, .table .medium.table-row .card-action, .tile-wrapper .medium.tile .card-action, .card.large .card-action, .table .large.table-row .card-action, .tile-wrapper .large.tile .card-action {
+    .card.small .card-action, .table .small.table-row .card-action, .tile-wrapper .small.tile .card-action, .settings .small.setting-group .card-action, .card.medium .card-action, .table .medium.table-row .card-action, .tile-wrapper .medium.tile .card-action, .settings .medium.setting-group .card-action, .card.large .card-action, .table .large.table-row .card-action, .tile-wrapper .large.tile .card-action, .settings .large.setting-group .card-action {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0; }
-  .card.small, .table .small.table-row, .tile-wrapper .small.tile {
+  .card.small, .table .small.table-row, .tile-wrapper .small.tile, .settings .small.setting-group {
     height: 300px; }
-  .card.medium, .table .medium.table-row, .tile-wrapper .medium.tile {
+  .card.medium, .table .medium.table-row, .tile-wrapper .medium.tile, .settings .medium.setting-group {
     height: 400px; }
-  .card.large, .table .large.table-row, .tile-wrapper .large.tile {
+  .card.large, .table .large.table-row, .tile-wrapper .large.tile, .settings .large.setting-group {
     height: 500px; }
-  .card.horizontal, .table .horizontal.table-row, .tile-wrapper .horizontal.tile {
+  .card.horizontal, .table .horizontal.table-row, .tile-wrapper .horizontal.tile, .settings .horizontal.setting-group {
     display: flex; }
-    .card.horizontal.small .card-image, .table .horizontal.small.table-row .card-image, .tile-wrapper .horizontal.small.tile .card-image, .card.horizontal.medium .card-image, .table .horizontal.medium.table-row .card-image, .tile-wrapper .horizontal.medium.tile .card-image, .card.horizontal.large .card-image, .table .horizontal.large.table-row .card-image, .tile-wrapper .horizontal.large.tile .card-image {
+    .card.horizontal.small .card-image, .table .horizontal.small.table-row .card-image, .tile-wrapper .horizontal.small.tile .card-image, .settings .horizontal.small.setting-group .card-image, .card.horizontal.medium .card-image, .table .horizontal.medium.table-row .card-image, .tile-wrapper .horizontal.medium.tile .card-image, .settings .horizontal.medium.setting-group .card-image, .card.horizontal.large .card-image, .table .horizontal.large.table-row .card-image, .tile-wrapper .horizontal.large.tile .card-image, .settings .horizontal.large.setting-group .card-image {
       height: 100%;
       max-height: none;
       overflow: visible; }
-      .card.horizontal.small .card-image img, .table .horizontal.small.table-row .card-image img, .tile-wrapper .horizontal.small.tile .card-image img, .card.horizontal.medium .card-image img, .table .horizontal.medium.table-row .card-image img, .tile-wrapper .horizontal.medium.tile .card-image img, .card.horizontal.large .card-image img, .table .horizontal.large.table-row .card-image img, .tile-wrapper .horizontal.large.tile .card-image img {
+      .card.horizontal.small .card-image img, .table .horizontal.small.table-row .card-image img, .tile-wrapper .horizontal.small.tile .card-image img, .settings .horizontal.small.setting-group .card-image img, .card.horizontal.medium .card-image img, .table .horizontal.medium.table-row .card-image img, .tile-wrapper .horizontal.medium.tile .card-image img, .settings .horizontal.medium.setting-group .card-image img, .card.horizontal.large .card-image img, .table .horizontal.large.table-row .card-image img, .tile-wrapper .horizontal.large.tile .card-image img, .settings .horizontal.large.setting-group .card-image img {
         height: 100%; }
-    .card.horizontal .card-image, .table .horizontal.table-row .card-image, .tile-wrapper .horizontal.tile .card-image {
+    .card.horizontal .card-image, .table .horizontal.table-row .card-image, .tile-wrapper .horizontal.tile .card-image, .settings .horizontal.setting-group .card-image {
       max-width: 50%; }
-      .card.horizontal .card-image img, .table .horizontal.table-row .card-image img, .tile-wrapper .horizontal.tile .card-image img {
+      .card.horizontal .card-image img, .table .horizontal.table-row .card-image img, .tile-wrapper .horizontal.tile .card-image img, .settings .horizontal.setting-group .card-image img {
         border-radius: 2px 0 0 2px;
         max-width: 100%;
         width: auto; }
-    .card.horizontal .card-stacked, .table .horizontal.table-row .card-stacked, .tile-wrapper .horizontal.tile .card-stacked {
+    .card.horizontal .card-stacked, .table .horizontal.table-row .card-stacked, .tile-wrapper .horizontal.tile .card-stacked, .settings .horizontal.setting-group .card-stacked {
       display: flex;
       flex-direction: column;
       flex: 1;
       position: relative; }
-      .card.horizontal .card-stacked .card-content, .table .horizontal.table-row .card-stacked .card-content, .tile-wrapper .horizontal.tile .card-stacked .card-content {
+      .card.horizontal .card-stacked .card-content, .table .horizontal.table-row .card-stacked .card-content, .tile-wrapper .horizontal.tile .card-stacked .card-content, .settings .horizontal.setting-group .card-stacked .card-content {
         flex-grow: 1; }
-  .card.sticky-action .card-action, .table .sticky-action.table-row .card-action, .tile-wrapper .sticky-action.tile .card-action {
+  .card.sticky-action .card-action, .table .sticky-action.table-row .card-action, .tile-wrapper .sticky-action.tile .card-action, .settings .sticky-action.setting-group .card-action {
     z-index: 2; }
-  .card.sticky-action .card-reveal, .table .sticky-action.table-row .card-reveal, .tile-wrapper .sticky-action.tile .card-reveal {
+  .card.sticky-action .card-reveal, .table .sticky-action.table-row .card-reveal, .tile-wrapper .sticky-action.tile .card-reveal, .settings .sticky-action.setting-group .card-reveal {
     z-index: 1;
     padding-bottom: 64px; }
-  .card .card-image, .table .table-row .card-image, .tile-wrapper .tile .card-image {
+  .card .card-image, .table .table-row .card-image, .tile-wrapper .tile .card-image, .settings .setting-group .card-image {
     position: relative; }
-    .card .card-image img, .table .table-row .card-image img, .tile-wrapper .tile .card-image img {
+    .card .card-image img, .table .table-row .card-image img, .tile-wrapper .tile .card-image img, .settings .setting-group .card-image img {
       display: block;
       border-radius: 2px 2px 0 0;
       position: relative;
@@ -3556,39 +3556,39 @@ small {
       top: 0;
       bottom: 0;
       width: 100%; }
-    .card .card-image .card-title, .table .table-row .card-image .card-title, .tile-wrapper .tile .card-image .card-title, .card .card-image .table .data.data-main, .table .card .card-image .data.data-main, .table .table-row .card-image .data.data-main, .tile-wrapper .tile .card-image .table .data.data-main, .table .tile-wrapper .tile .card-image .data.data-main {
+    .card .card-image .card-title, .table .table-row .card-image .card-title, .tile-wrapper .tile .card-image .card-title, .settings .setting-group .card-image .card-title, .card .card-image .table .data.data-main, .table .card .card-image .data.data-main, .table .table-row .card-image .data.data-main, .tile-wrapper .tile .card-image .table .data.data-main, .table .tile-wrapper .tile .card-image .data.data-main, .settings .setting-group .card-image .table .data.data-main, .table .settings .setting-group .card-image .data.data-main {
       color: #fff;
       position: absolute;
       bottom: 0;
       left: 0;
       max-width: 100%;
       padding: 24px; }
-  .card .card-content, .table .table-row .card-content, .tile-wrapper .tile .card-content {
+  .card .card-content, .table .table-row .card-content, .tile-wrapper .tile .card-content, .settings .setting-group .card-content {
     padding: 24px;
     border-radius: 0 0 2px 2px; }
-    .card .card-content p, .table .table-row .card-content p, .tile-wrapper .tile .card-content p {
+    .card .card-content p, .table .table-row .card-content p, .tile-wrapper .tile .card-content p, .settings .setting-group .card-content p {
       margin: 0; }
-    .card .card-content .card-title, .table .table-row .card-content .card-title, .tile-wrapper .tile .card-content .card-title, .card .card-content .table .data.data-main, .table .card .card-content .data.data-main, .table .table-row .card-content .data.data-main, .tile-wrapper .tile .card-content .table .data.data-main, .table .tile-wrapper .tile .card-content .data.data-main {
+    .card .card-content .card-title, .table .table-row .card-content .card-title, .tile-wrapper .tile .card-content .card-title, .settings .setting-group .card-content .card-title, .card .card-content .table .data.data-main, .table .card .card-content .data.data-main, .table .table-row .card-content .data.data-main, .tile-wrapper .tile .card-content .table .data.data-main, .table .tile-wrapper .tile .card-content .data.data-main, .settings .setting-group .card-content .table .data.data-main, .table .settings .setting-group .card-content .data.data-main {
       display: block;
       line-height: 32px;
       margin-bottom: 8px; }
-      .card .card-content .card-title i, .table .table-row .card-content .card-title i, .tile-wrapper .tile .card-content .card-title i, .card .card-content .table .data.data-main i, .table .card .card-content .data.data-main i, .table .table-row .card-content .data.data-main i, .tile-wrapper .tile .card-content .table .data.data-main i, .table .tile-wrapper .tile .card-content .data.data-main i {
+      .card .card-content .card-title i, .table .table-row .card-content .card-title i, .tile-wrapper .tile .card-content .card-title i, .settings .setting-group .card-content .card-title i, .card .card-content .table .data.data-main i, .table .card .card-content .data.data-main i, .table .table-row .card-content .data.data-main i, .tile-wrapper .tile .card-content .table .data.data-main i, .table .tile-wrapper .tile .card-content .data.data-main i, .settings .setting-group .card-content .table .data.data-main i, .table .settings .setting-group .card-content .data.data-main i {
         line-height: 32px; }
-  .card .card-action, .table .table-row .card-action, .tile-wrapper .tile .card-action {
+  .card .card-action, .table .table-row .card-action, .tile-wrapper .tile .card-action, .settings .setting-group .card-action {
     background-color: inherit;
     border-top: 1px solid rgba(160, 160, 160, 0.2);
     position: relative;
     padding: 16px 24px; }
-    .card .card-action:last-child, .table .table-row .card-action:last-child, .tile-wrapper .tile .card-action:last-child {
+    .card .card-action:last-child, .table .table-row .card-action:last-child, .tile-wrapper .tile .card-action:last-child, .settings .setting-group .card-action:last-child {
       border-radius: 0 0 2px 2px; }
-    .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating), .table .table-row .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating), .tile-wrapper .tile .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
+    .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating), .table .table-row .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating), .tile-wrapper .tile .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating), .settings .setting-group .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating) {
       color: #ffab40;
       margin-right: 24px;
       transition: color .3s ease;
       text-transform: uppercase; }
-      .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover, .table .table-row .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover, .tile-wrapper .tile .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover {
+      .card .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover, .table .table-row .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover, .tile-wrapper .tile .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover, .settings .setting-group .card-action a:not(.btn):not(.btn-large):not(.btn-small):not(.btn-large):not(.btn-floating):hover {
         color: #ffd8a6; }
-  .card .card-reveal, .table .table-row .card-reveal, .tile-wrapper .tile .card-reveal {
+  .card .card-reveal, .table .table-row .card-reveal, .tile-wrapper .tile .card-reveal, .settings .setting-group .card-reveal {
     padding: 24px;
     position: absolute;
     background-color: #fff;
@@ -3599,7 +3599,7 @@ small {
     height: 100%;
     z-index: 3;
     display: none; }
-    .card .card-reveal .card-title, .table .table-row .card-reveal .card-title, .tile-wrapper .tile .card-reveal .card-title, .card .card-reveal .table .data.data-main, .table .card .card-reveal .data.data-main, .table .table-row .card-reveal .data.data-main, .tile-wrapper .tile .card-reveal .table .data.data-main, .table .tile-wrapper .tile .card-reveal .data.data-main {
+    .card .card-reveal .card-title, .table .table-row .card-reveal .card-title, .tile-wrapper .tile .card-reveal .card-title, .settings .setting-group .card-reveal .card-title, .card .card-reveal .table .data.data-main, .table .card .card-reveal .data.data-main, .table .table-row .card-reveal .data.data-main, .tile-wrapper .tile .card-reveal .table .data.data-main, .table .tile-wrapper .tile .card-reveal .data.data-main, .settings .setting-group .card-reveal .table .data.data-main, .table .settings .setting-group .card-reveal .data.data-main {
       cursor: pointer;
       display: block; }
 
@@ -6805,19 +6805,19 @@ body.app-loading {
   .sidenav-trigger {
     display: none; } }
 
-.stackable .card, .table .card, .table .table-row, .stackable .tile-wrapper .tile, .tile-wrapper .stackable .tile, .table .tile-wrapper .tile, .tile-wrapper .table .tile {
+.stackable .card, .table .card, .table .table-row, .stackable .tile-wrapper .tile, .tile-wrapper .stackable .tile, .table .tile-wrapper .tile, .tile-wrapper .table .tile, .stackable .settings .setting-group, .settings .stackable .setting-group, .table .settings .setting-group, .settings .table .setting-group {
   margin: 0;
   width: 100%;
   box-shadow: none;
   border-radius: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.14); }
-  .stackable .card:last-of-type, .table .card:last-of-type, .table .table-row:last-of-type, .stackable .tile-wrapper .tile:last-of-type, .tile-wrapper .stackable .tile:last-of-type, .table .tile-wrapper .tile:last-of-type, .tile-wrapper .table .tile:last-of-type {
+  .stackable .card:last-of-type, .table .card:last-of-type, .table .table-row:last-of-type, .stackable .tile-wrapper .tile:last-of-type, .tile-wrapper .stackable .tile:last-of-type, .table .tile-wrapper .tile:last-of-type, .tile-wrapper .table .tile:last-of-type, .stackable .settings .setting-group:last-of-type, .settings .stackable .setting-group:last-of-type, .table .settings .setting-group:last-of-type, .settings .table .setting-group:last-of-type {
     border-bottom: none; }
-  .stackable .card .card-content, .table .card .card-content, .table .table-row .card-content, .stackable .tile-wrapper .tile .card-content, .tile-wrapper .stackable .tile .card-content, .table .tile-wrapper .tile .card-content, .tile-wrapper .table .tile .card-content {
+  .stackable .card .card-content, .table .card .card-content, .table .table-row .card-content, .stackable .tile-wrapper .tile .card-content, .tile-wrapper .stackable .tile .card-content, .table .tile-wrapper .tile .card-content, .tile-wrapper .table .tile .card-content, .stackable .settings .setting-group .card-content, .settings .stackable .setting-group .card-content, .table .settings .setting-group .card-content, .settings .table .setting-group .card-content {
     display: flex;
     flex-flow: column nowrap; }
     @media only screen and (min-width: 601px) {
-      .stackable .card .card-content, .table .card .card-content, .table .table-row .card-content, .stackable .tile-wrapper .tile .card-content, .tile-wrapper .stackable .tile .card-content, .table .tile-wrapper .tile .card-content, .tile-wrapper .table .tile .card-content {
+      .stackable .card .card-content, .table .card .card-content, .table .table-row .card-content, .stackable .tile-wrapper .tile .card-content, .tile-wrapper .stackable .tile .card-content, .table .tile-wrapper .tile .card-content, .tile-wrapper .table .tile .card-content, .stackable .settings .setting-group .card-content, .settings .stackable .setting-group .card-content, .table .settings .setting-group .card-content, .settings .table .setting-group .card-content {
         flex-flow: row nowrap; } }
 
 .chip.chip-blue {
@@ -7178,12 +7178,12 @@ form label.error {
     width: 60px;
     text-align: center; }
 
-.message .card, .message .table .table-row, .table .message .table-row, .message .tile-wrapper .tile, .tile-wrapper .message .tile {
+.message .card, .message .table .table-row, .table .message .table-row, .message .tile-wrapper .tile, .tile-wrapper .message .tile, .message .settings .setting-group, .settings .message .setting-group {
   padding: 0; }
-  .message .card .card-title, .message .table .table-row .card-title, .table .message .table-row .card-title, .message .tile-wrapper .tile .card-title, .tile-wrapper .message .tile .card-title, .message .card .table .data.data-main, .table .message .card .data.data-main, .message .table .table-row .data.data-main, .table .message .table-row .data.data-main, .message .tile-wrapper .tile .table .data.data-main, .table .message .tile-wrapper .tile .data.data-main, .tile-wrapper .message .tile .table .data.data-main, .table .tile-wrapper .message .tile .data.data-main {
+  .message .card .card-title, .message .table .table-row .card-title, .table .message .table-row .card-title, .message .tile-wrapper .tile .card-title, .tile-wrapper .message .tile .card-title, .message .settings .setting-group .card-title, .settings .message .setting-group .card-title, .message .card .table .data.data-main, .table .message .card .data.data-main, .message .table .table-row .data.data-main, .table .message .table-row .data.data-main, .message .tile-wrapper .tile .table .data.data-main, .table .message .tile-wrapper .tile .data.data-main, .tile-wrapper .message .tile .table .data.data-main, .table .tile-wrapper .message .tile .data.data-main, .message .settings .setting-group .table .data.data-main, .table .message .settings .setting-group .data.data-main, .settings .message .setting-group .table .data.data-main, .table .settings .message .setting-group .data.data-main {
     padding: 24px 18px;
     border-left: 5px solid #26AB45; }
-  .message .card .card-content, .message .table .table-row .card-content, .table .message .table-row .card-content, .message .tile-wrapper .tile .card-content, .tile-wrapper .message .tile .card-content {
+  .message .card .card-content, .message .table .table-row .card-content, .table .message .table-row .card-content, .message .tile-wrapper .tile .card-content, .tile-wrapper .message .tile .card-content, .message .settings .setting-group .card-content, .settings .message .setting-group .card-content {
     padding: 24px 18px 24px 23px; }
 
 .message.message-error .card-title, .message.message-error .table .data.data-main, .table .message.message-error .data.data-main {
@@ -7191,6 +7191,39 @@ form label.error {
 
 .message.message-success .card-title, .message.message-success .table .data.data-main, .table .message.message-success .data.data-main {
   border-color: #26AB45; }
+
+.settings {
+  width: 100%; }
+  @media only screen and (min-width: 993px) {
+    .settings {
+      width: 60%; } }
+  .settings .setting-group {
+    padding: 20px;
+    margin-bottom: 40px; }
+    .settings .setting-group:last-of-type {
+      margin-bottom: 0; }
+  .settings .setting-group-header {
+    font-weight: bold;
+    margin-bottom: 20px; }
+  .settings .setting {
+    display: flex;
+    align-items: baseline;
+    padding: 10px;
+    border-left: 3px solid #fff; }
+    .settings .setting:hover {
+      border-left: 3px solid rgba(0, 0, 0, 0.14); }
+  .settings .setting-label {
+    margin-right: 100px;
+    width: 60%; }
+  .settings .setting-detail {
+    display: block;
+    color: #fff;
+    font-size: 12px;
+    font-style: italic; }
+  .settings .hovered .setting-detail {
+    color: #818181; }
+  .settings .setting-input {
+    flex-grow: 1; }
 
 nav i.material-icons {
   display: inline-block; }

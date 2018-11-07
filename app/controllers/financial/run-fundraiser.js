@@ -38,6 +38,7 @@
 var RunFundraiser = function() {
   this._db = new Database();
   this._pageTitle = 'Run Fundraiser';
+  this._settings = getSettings();
 };
 
 
@@ -154,8 +155,10 @@ RunFundraiser.prototype.getTableRow_ = function(account) {
           '<input type="number" name="' + checkedOutName + '" min="0" value="' +
               account.fundraiserAmountCheckedOut + '">' +
           '<div class="incrementer">' +
-            '<span class="increment" data-amount="60">$60</span>' +
-            '<span class="increment" data-amount="30">$30</span>' +
+            '<span class="increment" data-amount="' + this._settings.incrementer1 +
+                '">$' + this._settings.incrementer1 + '</span>' +
+            '<span class="increment" data-amount="' + this._settings.incrementer2 +
+                '">$' + this._settings.incrementer2 + '</span>' +
           '</div>' +
         '</span>' +
       '</div>' +
@@ -166,8 +169,10 @@ RunFundraiser.prototype.getTableRow_ = function(account) {
           '<input type="number" name="' + checkedInName + '" min="0" value="' +
               account.fundraiserAmountCheckedIn + '">' +
           '<div class="incrementer">' +
-            '<span class="increment" data-amount="60">$60</span>' +
-            '<span class="increment" data-amount="30">$30</span>' +
+            '<span class="increment" data-amount="' + this._settings.incrementer1 +
+                '">$' + this._settings.incrementer1 + '</span>' +
+            '<span class="increment" data-amount="' + this._settings.incrementer2 +
+                '">$' + this._settings.incrementer2 + '</span>' +
           '</div>' +
         '</span>' +
       '</div>' +
